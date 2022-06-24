@@ -1,4 +1,5 @@
 import SearchBar from "../components/SearchBar"
+import Link from "next/link"
 
 export async function getServerSideProps(context) {
     const dir = `https://api.globalgiving.org/api/public/services/search/projects?api_key=5daeb019-df53-43ea-a550-0621ec8787bf&q=${context.query.dir}`
@@ -17,16 +18,21 @@ export async function getServerSideProps(context) {
 }
 
 export default function SearchResults({ allSearchResult }) {
+    console.log(allSearchResult)
     return (
         <div>
-            <div className="pt-10">
+            <div className="pt-6">
                 <SearchBar />
             </div>
-            <div className="flex items-center justify-center pt-10">
-                <ul className="w-1/2">
+            <div className="pt-10 pl-10">
+                <ul>
                     {allSearchResult.map(res => (
                         <li key={res.id}>
-                            {res.title}
+                            <a href={res.contactUrl} className="text-xl hover:text-blue-500 hover:underline">
+                                {res.title}
+                            </a>
+                            <p>{res.summary.slice(0,100)}...</p>
+                            <br/>
                         </li>
                     ))}
                 </ul>
