@@ -1,5 +1,4 @@
 import SearchBar from "../components/SearchBar"
-import Link from "next/link"
 
 export async function getServerSideProps(context) {
     const dir = `https://api.globalgiving.org/api/public/services/search/projects?api_key=5daeb019-df53-43ea-a550-0621ec8787bf&q=${context.query.dir}`
