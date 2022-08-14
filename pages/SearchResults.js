@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import SearchBar from "../components/SearchBar"
 
 export async function getServerSideProps(context) {
@@ -20,6 +21,9 @@ export default function SearchResults({ allSearchResult }) {
     console.log(allSearchResult)
     return (
         <div>
+            <Head>
+                <title>Charity search</title>
+            </Head>
             <div className="pt-6">
                 <SearchBar />
             </div>
