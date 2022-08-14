@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import SearchBar from '../components/SearchBar'
 import Slogan from '../components/Slogan'
+import Logo from '../components/Logo'
 
 export default function Home() {
     return (
@@ -12,7 +13,7 @@ export default function Home() {
                 <Slogan />
             </div>
             <div className="pt-80">
-                <SearchBar />
+                <Logo />
             </div>
         </div>
     )

@@ -2,6 +2,7 @@
     font-family: "Roboto";
     font-weight: 300;
     font-size: 32px;
+    color: white;
 }
 
 .slogan {
@@ -9,11 +10,11 @@
     overflow: hidden;
     white-space: nowrap;
 
-    &.left {
+    .left {
         animation: showup 7s infinite;
     }
 
-    &.right {
+    .right {
         width: 0px;
         animation: reveal 7s infinite;
 
