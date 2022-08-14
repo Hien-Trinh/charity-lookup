@@ -8,9 +8,9 @@ export default function SearchBar() {
     return (
         <form className={styles.container}>
             <input
-                type="text"
+                type="search"
                 placeholder="Search"
-                className="w-5/6 h-11 border-[1px] border-gray-400 pl-4 rounded-l-3xl shadow-2xl"
+                className={styles.inputField}
                 value={data.dir}
                 onChange={(event) =>
                     setData({
@@ -19,10 +19,10 @@ export default function SearchBar() {
                 }
             />
             <Link href={{
-                pathname: "../SearchResults",
-                query: data
+                pathname: data.dir ? "../SearchResults" : "../",
+                query: data.dir ? data : null
             }}>
-                <button className="w-1/6 h-11 font-bold bg-gray-400 rounded-r-full shadow-2xl">
+                <button className="w-1/5 h-11 font-bold bg-gray-400 rounded-r-full shadow-2xl">
                     Click me
                 </button>
             </Link>
