@@ -1,7 +1,7 @@
 .container {
     position: absolute;
     width: 100vw;
-    top: 50%;
+    top: 48%;
     text-align: center;
     overflow: hidden;
     font-family: "Roboto";
@@ -16,16 +16,18 @@
     white-space: nowrap;
 
     .left {
-        animation: showup 7s infinite;
+        opacity: 0;
+        animation: showup 7s forwards 1s;
     }
 
     .right {
+        opacity: 0;
         width: 0px;
-        animation: reveal 7s infinite;
+        animation: reveal 7s forwards 1s;
 
         span {
             margin-left: -300px;
-            animation: slidein 7s infinite;
+            animation: slidein 7s forwards 1s;
         }
     }
 }

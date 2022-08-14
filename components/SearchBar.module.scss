@@ -1,0 +1,25 @@
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40vw;
+    opacity: 0;
+    animation: reveal 2s ease forwards 10s;
+}
+
+@keyframes reveal {
+    from {
+        top: 55%;
+        opacity: 0;
+        filter: blur(40px);
+    }
+    to {
+        top: 50%;
+        opacity: 1;
+        filter: blur(0px);
+    }
+}
