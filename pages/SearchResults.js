@@ -31,10 +31,10 @@ export default function SearchResults({ allSearchResult }) {
                 <ul>
                     {allSearchResult.map(res => (
                         <li key={res.id}>
-                            <a href={res.contactUrl} className="text-xl hover:text-blue-500 hover:underline">
+                            <a href={res.contactUrl} className="text-xl text-white hover:text-blue-500 hover:underline">
                                 {res.title}
                             </a>
-                            <p>{res.summary.slice(0,100)}...</p>
+                            <p className="text-base text-white ">{res.summary.slice(0,100)}...</p>
                             <br/>
                         </li>
                     ))}
