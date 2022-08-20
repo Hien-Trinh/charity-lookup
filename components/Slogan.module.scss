@@ -17,17 +17,17 @@
 
     .left {
         opacity: 0;
-        animation: showup 7s forwards 1s;
+        animation: showup 5s forwards 1s;
     }
 
     .right {
         opacity: 0;
         width: 0px;
-        animation: reveal 7s forwards 1s;
+        animation: reveal 5s forwards 1s;
 
         span {
             margin-left: -300px;
-            animation: slidein 7s forwards 1s;
+            animation: slidein 5s forwards 1s;
         }
     }
 }
@@ -39,7 +39,7 @@
     20% {
         opacity: 1;
     }
-    80% {
+    70% {
         opacity: 1;
     }
     100% {
@@ -54,7 +54,7 @@
     20% {
         margin-left: -300px;
     }
-    35% {
+    50% {
         margin-left: 10px;
     }
     100% {
@@ -71,10 +71,10 @@
         opacity: 1;
         width: 0px;
     }
-    30% {
+    45% {
         width: 240px;
     }
-    80% {
+    70% {
         opacity: 1;
     }
     100% {

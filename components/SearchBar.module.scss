@@ -1,8 +1,4 @@
 .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, 0);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -11,7 +7,7 @@
     border-radius: 24px;
     background: inherit;
     opacity: 0;
-    animation: reveal 2s ease forwards 10s;
+    animation: reveal 2s ease forwards 7s;
 }
 
 @keyframes reveal {

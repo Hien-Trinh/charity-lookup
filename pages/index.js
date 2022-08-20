@@ -11,7 +11,9 @@ export default function Home() {
             </Head>
             <Logo />
             <Slogan />
-            <SearchBar />
+            <div className="absolute top-1/2 right-1/2 translate-x-1/2">
+                <SearchBar />
+            </div>
         </div>
     )
 }
