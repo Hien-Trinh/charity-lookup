@@ -23,7 +23,7 @@ export default function SearchBar() {
                 query: data.dir ? data : null
             }}>
                 <button className="w-1/5 h-11 font-bold bg-gray-400 rounded-r-full shadow-2xl">
-                    Click me
+                    Search
                 </button>
             </Link>
         </form>
