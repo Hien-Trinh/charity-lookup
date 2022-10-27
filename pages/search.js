@@ -12,12 +12,17 @@ export async function getServerSideProps(context) {
         },
     }).then((res) => res.json())
 
-    const allSearchResult = result.search.response.projects.project
+    var allSearchResult = result.search.response.projects
+    var output = "empty"
 
-    return { props: { allSearchResult } }
+    if (allSearchResult !== undefined) {
+        output = allSearchResult.project
+    }
+
+    return { props: { output } }
 }
 
-export default function search({ allSearchResult }) {
+export default function search({ output }) {
     return (
         <div>
             <Head>
@@ -27,23 +32,27 @@ export default function search({ allSearchResult }) {
                 <SearchBar />
             </motion.div>
             <div className="pt-10 pl-10">
-            <ul>
-                {allSearchResult.map((res) => (
-                    <li key={res.id}>
-                        <a
-                            href={res.contactUrl}
-                            className="text-xl text-white hover:text-blue-500 hover:underline"
-                        >
-                            {res.title}
-                        </a>
-                        <p className="text-base text-white ">
-                            {res.summary.slice(0, 100)}...
-                        </p>
-                        <br />
-                    </li>
-                ))}
-            </ul>
-        </div>
+                <ul>
+                    {output !== "empty" ? (
+                        output.map((res) => (
+                            <li key={res.id}>
+                                <a
+                                    href={res.contactUrl}
+                                    className="text-xl text-white hover:text-blue-500 hover:underline"
+                                >
+                                    {res.title}
+                                </a>
+                                <p className="text-base text-white ">
+                                    {res.summary.slice(0, 100)}...
+                                </p>
+                                <br />
+                            </li>
+                        ))
+                    ) : (
+                        <li className="text-xl text-white">No results found</li>
+                    )}
+                </ul>
+            </div>
         </div>
     )
 }
