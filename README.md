@@ -60,9 +60,20 @@ The Global Giving organization developed an Application Programming Interface (A
 7. Users can see a page footer with links to your social media accounts, including social media icons (like the Twitter icon).
 
 
+## Criteria B: Design
 
+### Solution Sketch
 
+![solution_sketch](https://user-images.githubusercontent.com/89367058/199765500-82652c68-8cf7-453b-a998-080384e1a398.png)
 
+***Figure 1:*** Sketch of purposed solution's wireframe
+
+***Fig.1*** is a wireframe showing a total of 4 screens - ```HomeScreen```, ```SearchResults```, ```LoginScreen```, and ```SignupScreen``` - connected via buttons.
+- The ```LoginScreen``` and ```RegisterScreen``` are connected via the "Create one right now!"/"Login right now!" buttons.
+- From the ```SingupScreen```, signing up will automatically send the user to the ```HomeScreen```.
+- From the ```LoginScreen```, logging in will automatically send the user to the ```HomeScreen```.
+- From the ```HomeScreen```, the user can enter a search term in the ***searchbar*** and click ***Search*** or ***Enter key*** to go to the ```ResultsScreen``` displaying the search results, or chose to login/logout by moving to the ```LoginScreen``` via ***User icon*** on the top right corner.
+- From the ```ResultsScreen```, return to the ```HomeScreen``` via "CharityFinder"
 
 
 ## Citation
