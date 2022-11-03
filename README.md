@@ -15,7 +15,7 @@
 
 ### Definition of Problem
 
-Throughout the previous centuries, total giving – the amount of money that went to charitable purposes – accounted for around 2% of the GDP worldwide, and in 2017 it was a whopping $410.02 billion (“Giving Statistics”). Therefore, the demand for a tool to help people find charity organizations worldwide has risen. My client, an acquaintance, wants to be involved in the cause but finds it challenging to look for the right charity based on his preference.
+Throughout the previous centuries, total giving – the amount of money that went to charitable purposes – accounted for around 2% of the GDP worldwide, and in 2017 it was a whopping $410.02 billion <sup>[[1]](https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42)</sup>. Therefore, the demand for a tool to help people find charity organizations worldwide has risen. My client, an acquaintance, wants to be involved in the cause but finds it challenging to look for the right charity based on his preference.
 
 ### Proposed Solution
 
@@ -23,7 +23,7 @@ The web application utilizes the Global Giving organizations API to provide user
 
 #### Javascript
 
-First, Javascript is a high-level programming language with simple syntax – similar to that of Python. As a result, it’s easy to pick up for a Python programmer. Secondly, Javascript is the most popular programming language for web applications’ client-side behavior thanks to its abundance of third-party libraries (“Usage Statistics of JavaScript as Client-side Programming Language on Websites, August 2022”).
+First, Javascript is a high-level programming language with simple syntax – similar to that of Python. As a result, it’s easy to pick up for a Python programmer. Secondly, Javascript is the most popular programming language for web applications’ client-side behavior thanks to its abundance of third-party libraries <sup>[[2]]([https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42](https://w3techs.com/technologies/details/cp-javascript/))</sup>.
 
 #### React and Next.js
 
@@ -63,3 +63,6 @@ The Global Giving organization developed an Application Programming Interface (A
 
 
 
+## Citation
+1. “Giving Statistics.” Charity Navigator, 2018, https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42. Accessed 23 August 2022.
+2. “Usage Statistics of JavaScript as Client-side Programming Language on Websites, August 2022.” W3Techs, 2022, https://w3techs.com/technologies/details/cp-javascript/. Accessed 22 August 2022.
