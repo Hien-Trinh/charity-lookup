@@ -57,3 +57,9 @@ The Global Giving organization developed an Application Programming Interface (A
 4. The login information and database are secured and the password is hashed
 5. Function to sort the table based on different factors
 6. Follow good coding practises, which allow for future extensions by other developers
+
+
+
+
+
+
