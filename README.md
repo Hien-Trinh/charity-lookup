@@ -35,11 +35,11 @@ Next.js is an open-source framework built with Node.js that adds functionalities
 
 Cascading Style Sheets (CSS) is a stylesheet language that determines the styles – position, size, color, etc. – of the content represented by HTML or XML<sup>[[5]](https://developer.mozilla.org/en-US/docs/Web/CSS)</sup>. 
 
-Syntactically Awesome Style Sheets (Sass) is an extension of CSS that allows developers to use features such as variables, imports, etc. (“Sass Introduction”).
+Syntactically Awesome Style Sheets (Sass) is an extension of CSS that allows developers to use features such as variables, imports, etc.<sup>[[6]](https://www.w3schools.com/sass/sass_intro.php)</sup>.
 
 #### Tailwind CSS
 
-Tailwind is a CSS framework that lets developers use classes in the markup language (HTML) to apply CSS properties directly (“Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.”).
+Tailwind is a CSS framework that lets developers use classes in the markup language (HTML) to apply CSS properties directly<sup>[[7]](https://tailwindcss.com)</sup>.
 
 #### Global Giving API
 
@@ -69,3 +69,5 @@ The Global Giving organization developed an Application Programming Interface (A
 3. “React – A JavaScript library for building user interfaces.” React, https://reactjs.org. Accessed 23 August 2022.
 4. “Next.js by Vercel - The React Framework.” Next.js, https://nextjs.org. Accessed 23 August 2022.
 5. “CSS: Cascading Style Sheets | MDN.” MDN Web Docs, 16 August 2022, https://developer.mozilla.org/en-US/docs/Web/CSS. Accessed 23 August 2022.
+6. “Sass Introduction.” W3Schools, https://www.w3schools.com/sass/sass_intro.php. Accessed 23 August 2022.
+7. “Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.” Tailwind CSS, https://tailwindcss.com. Accessed 24 August 2022.
