@@ -76,6 +76,27 @@ The Global Giving organization developed an Application Programming Interface (A
 - From the ```ResultsScreen```, return to the ```HomeScreen``` via "CharityFinder"
 
 
+### Record of Task
+
+| Task No. | Task                                   | Planned outcome                                                          | Est. time | Est. completion date | Criteria |
+|----------|----------------------------------------|--------------------------------------------------------------------------|-----------|----------------------|----------|
+|     1    | Planning: meet with client             | identified the problem, success criteria, meeting schedule, etc.         |   45min   |        Jul. 23       |     A    |
+|     2    | Planning: proposed solution            | solid idea of a proposed solution, sent to the client for confirmation   |   30min   |        Aug. 20       |     A    |
+|     3    | Planning: rationale                    | researched and documented the cause for the proposed solution            |   45min   |        Aug. 20       |     A    |
+|     4    | Design: solution sketch                | detailed wireframe of the website                                        |   20min   |        Aug. 24       |     B    |
+|     5    | Design: system diagram                 | detailed system diagram of the website                                   |   30min   |        Aug. 28       |     B    |
+|     6    | Planning: meet with client             | propose solution and plan, and receive feedback                          |   30min   |        Sep. 5        |     A    |
+|     7    | Design: solution sketch update         | detailed wireframe of the website                                        |   30min   |        Sep. 7        |     B    |
+|     8    | Development: home screen               | designed and stylized the landing page                                   |     1h    |        Sep. 12       |     C    |
+|     9    | Development: search function           | implemented Global Giving API into the search bar                        |    1h30   |        Sep. 12       |     C    |
+|    10    | Development: debugging search function | test various inputs and address for errors or unwanted results           |     3h    |        Oct. 5        |     C    |
+|    11    | Planning: meet with client             | go through minimal viable product (search function) and address feedback |    1h15   |        Oct. 12       |     A    |
+|          |                                        |                                                                          |           |                      |          |
+
+
+### UML diagram
+
+
 ## Citation
 1. “Giving Statistics.” Charity Navigator, 2018, https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42. Accessed 23 August 2022.
 2. “Usage Statistics of JavaScript as Client-side Programming Language on Websites, August 2022.” W3Techs, 2022, https://w3techs.com/technologies/details/cp-javascript/. Accessed 22 August 2022.
