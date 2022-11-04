@@ -43,10 +43,10 @@ Tailwind is a CSS framework that lets developers use classes in the markup langu
 
 #### Global Giving API
 
-The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide.
+The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide<sup>[[8]](https://www.globalgiving.org/api/)</sup>.
 
 #### MongoDB
-
+MongoDB is a document database for non-relational database stored in JSON (Javascript Object Notation) format<sup>[[9]](https://www.interviewbit.com/blog/mongodb-vs-mysql/)</sup>. As my solution does not require relational database and is build using Javascript, it's more beneficial to use mongoDB for it's speed, scalability, and formatting instead of SQL database programs.
 
 
 ### Success Criteria
@@ -97,6 +97,28 @@ The Global Giving organization developed an Application Programming Interface (A
 ### UML diagram
 
 
+## Criteria C: Development
+
+### Tools
+1. Object-oriented programming (OOP)
+2. React framework
+3. Next.js library
+4. CSS, Sass stylesheet
+5. Database
+6. MongoDB database program
+7. Global Giving API
+8. Guard clause
+
+
+### Creating the UI
+
+The UI (user interface) plays an important role in achieving the success criterias as it provides visuals and makes the interaction with the website’s function much more abstract, simpler. I chose the React framework because it supports OOP (object-oriented programming), which is highly compatible with the website. In addition, React integrates HTML into Javascript, which makes it easier to create dynamic webpages – website displays differently based on different conditions.
+
+
+### Creating the database
+
+As the client requested, the website must include a storage system that stores data on the server database. There is one table to classify the users. I used mongoDB because it stores data on the server instead of locally.
+
 ## Citation
 1. “Giving Statistics.” Charity Navigator, 2018, https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42. Accessed 23 August 2022.
 2. “Usage Statistics of JavaScript as Client-side Programming Language on Websites, August 2022.” W3Techs, 2022, https://w3techs.com/technologies/details/cp-javascript/. Accessed 22 August 2022.
@@ -105,3 +127,5 @@ The Global Giving organization developed an Application Programming Interface (A
 5. “CSS: Cascading Style Sheets | MDN.” MDN Web Docs, 16 August 2022, https://developer.mozilla.org/en-US/docs/Web/CSS. Accessed 23 August 2022.
 6. “Sass Introduction.” W3Schools, https://www.w3schools.com/sass/sass_intro.php. Accessed 23 August 2022.
 7. “Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.” Tailwind CSS, https://tailwindcss.com. Accessed 24 August 2022.
+8. “GlobalGiving API Documentation.” GlobalGiving, https://www.globalgiving.org/api/. Accessed 4 November 2022.
+9. MongoDB vs mysql: Know the difference. InterviewBit. (2022, August 16). Retrieved November 4, 2022, from https://www.interviewbit.com/blog/mongodb-vs-mysql/.
