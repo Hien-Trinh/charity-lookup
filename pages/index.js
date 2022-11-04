@@ -12,12 +12,12 @@ export default function Home() {
                 <title>Charity search</title>
             </Head>
             <Logo />
-            <motion.div
+            <div
                 className={styles.searchbar}
                 layoutId="searchbar"
             >
                 <SearchBar />
-            </motion.div>
+            </div>
         </div>
     )
 }
