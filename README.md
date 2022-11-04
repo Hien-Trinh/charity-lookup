@@ -94,7 +94,18 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 ***Figure 2:*** System Diagram for developer. Shows the input, output, internet, and the process in between.
 
 
-### UML diagram
+### Flow Diagrams
+
+![FlowDiagram_login](https://user-images.githubusercontent.com/89367058/199897033-98f0c9a9-c578-42a5-b458-fd4109a6bfce.png)
+
+***Figure 3:*** Flow diagram of the Login funciton
+
+### <br/>
+
+![FlowDiagram_search](https://user-images.githubusercontent.com/89367058/199903237-9ed9f2fa-42c8-4d0a-bdfb-c538f588cad7.png)
+
+***Figure 4:*** Flow diagram of the Search function
+
 
 ### Database UML Diagram
 
@@ -131,6 +142,7 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 |          |                                        |                                                                          |           |                      |          |
 
 
+### Test plan
 
 
 ## Criteria C: Development
