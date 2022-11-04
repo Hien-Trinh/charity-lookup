@@ -149,16 +149,15 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 ## Criteria C: Development
 
 ### Tools
-1. Object-oriented programming (OOP)
-2. React framework
-3. Next.js library
-4. CSS, Sass stylesheet
-5. Tailwind CSS library
-6. Framer motion library
-7. Database
-8. MongoDB Atlas
-9. Global Giving API
-10. Guard clause
+1. React framework
+2. Next.js library
+3. CSS, Sass stylesheet
+4. Tailwind CSS library
+5. Framer motion library
+6. Database
+7. MongoDB Atlas
+8. Global Giving API
+9. Guard clause
 
 
 ### Creating the UI
