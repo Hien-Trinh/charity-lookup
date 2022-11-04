@@ -16,15 +16,17 @@
 ### Definition of Problem
 
 Throughout the previous centuries, total giving – the amount of money that went to charitable purposes – accounted for around 2% of the GDP worldwide, and in 2017 it was a whopping $410.02 billion<sup>[[1]](https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42)</sup>. Therefore, the demand for a tool to help people find charity organizations worldwide has risen. My client, an acquaintance, wants to be involved in the cause but finds it challenging to look for the right charity based on his preference.
-![image](https://user-images.githubusercontent.com/89367058/199869386-371a3266-316f-4601-aade-08af6b040bdb.png)
+
 
 ### Proposed Solution
 
 The web application utilizes the Global Giving organizations API to provide users with a list of global charities to find one that matches their philanthropic interests. It uses Javascript with frameworks such as React and Next.js as the scripting language, HTML as a markup language, and CSS with Sass and Tailwind CSS as a stylesheet language.
 
+
 #### Javascript
 
 First, Javascript is a high-level programming language with simple syntax – similar to that of Python. As a result, it’s easy to pick up for a Python programmer. Secondly, Javascript is the most popular programming language for web applications’ client-side behavior thanks to its abundance of third-party libraries<sup>[[2]](https://w3techs.com/technologies/details/cp-javascript/)</sup>.
+
 
 #### React and Next.js
 
@@ -32,22 +34,30 @@ React is an open-source Javascript framework for creating interactive UI. First 
 
 Next.js is an open-source framework built with Node.js that adds functionalities such as server-side rendering, static websites, smart bundling, etc., for React-based websites<sup>[[4]](https://nextjs.org)</sup>.
 
+
 #### CSS and Sass
 
 Cascading Style Sheets (CSS) is a stylesheet language that determines the styles – position, size, color, etc. – of the content represented by HTML or XML<sup>[[5]](https://developer.mozilla.org/en-US/docs/Web/CSS)</sup>. 
 
 Syntactically Awesome Style Sheets (Sass) is an extension of CSS that allows developers to use features such as variables, imports, etc.<sup>[[6]](https://www.w3schools.com/sass/sass_intro.php)</sup>.
 
+
 #### Tailwind CSS
 
 Tailwind is a CSS framework that lets developers use classes in the markup language (HTML) to apply CSS properties directly<sup>[[7]](https://tailwindcss.com)</sup>.
+
 
 #### Global Giving API
 
 The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide<sup>[[8]](https://www.globalgiving.org/api/)</sup>.
 
-#### MongoDB
+
+#### MongoDB Atlas
 MongoDB is a document database for non-relational database stored in JSON (Javascript Object Notation) format<sup>[[9]](https://www.interviewbit.com/blog/mongodb-vs-mysql/)</sup>. As my solution does not require relational database and is build using Javascript, it's more beneficial to use mongoDB for it's speed, scalability, and formatting instead of SQL database programs.
+
+
+#### Vercel hosting service
+Next.js defaults to Vercel hosting service, which handles the distribution of service worldwide. There are different hosting option but because the website renders mostly on client side, there's no need for extra bandwidth or other resources<sup>[[10]](https://vercel.com/pricing)</sup>.
 
 
 ### Success Criteria
@@ -77,6 +87,13 @@ MongoDB is a document database for non-relational database stored in JSON (Javas
 - From the ```ResultsScreen```, return to the ```HomeScreen``` via "CharityFinder"
 
 
+### System Diagram
+
+![SystemDiagram](https://user-images.githubusercontent.com/89367058/199881054-962d6d93-6e43-4a3c-a938-04c15dd86269.png)
+
+***Figure 2:*** System Diagram for developer. Shows the input, output, internet, and the process in between.
+
+
 ### UML diagram
 
 ### Database UML Diagram
@@ -85,7 +102,7 @@ MongoDB is a document database for non-relational database stored in JSON (Javas
 
 ***Figure 3:*** ER diagram for the database. Visualized version of the database.
 
-### ER Table (example)
+### Databse Table (example)
 
 **Table: User**
 | ID | email                           | password                                                         | search_history                  |
@@ -93,7 +110,7 @@ MongoDB is a document database for non-relational database stored in JSON (Javas
 | 1  | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd | [China, water, starvation]      |
 | 2  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 | [Pakistan, Bangladesh, Vietnam] |
 
-***Figure 4:*** ER table 1. User table with some examples.
+***Figure 4:*** User table with some examples.
 
 
 ### Record of Task
@@ -126,7 +143,7 @@ MongoDB is a document database for non-relational database stored in JSON (Javas
 5. Tailwind CSS library
 6. Framer motion library
 7. Database
-8. MongoDB database program
+8. MongoDB Atlas
 9. Global Giving API
 10. Guard clause
 
@@ -138,7 +155,7 @@ The UI (user interface) plays an important role in achieving the success criteri
 
 ### Creating the database
 
-As the client requested, the website must include a storage system that stores data on the server database. There is one table to classify the users. I used mongoDB because it stores data on the server instead of locally.
+As the client requested, the website must include a storage system that stores data on the server database. There is one table to classify the users. I used mongoDB atlast because it stores data on the server instead of locally.
 
 
 
@@ -155,3 +172,4 @@ As the client requested, the website must include a storage system that stores d
 7. “Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.” Tailwind CSS, https://tailwindcss.com. Accessed 24 August 2022.
 8. “GlobalGiving API Documentation.” GlobalGiving, https://www.globalgiving.org/api/. Accessed 4 November 2022.
 9. MongoDB vs mysql: Know the difference. InterviewBit. (2022, August 16). Retrieved November 4, 2022, from https://www.interviewbit.com/blog/mongodb-vs-mysql/.
+10. “Pricing – Vercel.” Vercel, https://vercel.com/pricing. Accessed 4 November 2022.
