@@ -16,6 +16,7 @@
 ### Definition of Problem
 
 Throughout the previous centuries, total giving – the amount of money that went to charitable purposes – accounted for around 2% of the GDP worldwide, and in 2017 it was a whopping $410.02 billion<sup>[[1]](https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42)</sup>. Therefore, the demand for a tool to help people find charity organizations worldwide has risen. My client, an acquaintance, wants to be involved in the cause but finds it challenging to look for the right charity based on his preference.
+![image](https://user-images.githubusercontent.com/89367058/199869386-371a3266-316f-4601-aade-08af6b040bdb.png)
 
 ### Proposed Solution
 
@@ -76,6 +77,25 @@ MongoDB is a document database for non-relational database stored in JSON (Javas
 - From the ```ResultsScreen```, return to the ```HomeScreen``` via "CharityFinder"
 
 
+### UML diagram
+
+### Database UML Diagram
+
+![DatabaseUML](https://user-images.githubusercontent.com/89367058/199873136-4367509f-d541-4c7d-806c-944acdd962e3.png)
+
+***Figure 3:*** ER diagram for the database. Visualized version of the database.
+
+### ER Table (example)
+
+**Table: User**
+| ID | email                           | password                                                         | search_history                  |
+|----|---------------------------------|------------------------------------------------------------------|---------------------------------|
+| 1  | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd | [China, water, starvation]      |
+| 2  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 | [Pakistan, Bangladesh, Vietnam] |
+
+***Figure 4:*** ER table 1. User table with some examples.
+
+
 ### Record of Task
 
 | Task No. | Task                                   | Planned outcome                                                          | Est. time | Est. completion date | Criteria |
@@ -94,7 +114,6 @@ MongoDB is a document database for non-relational database stored in JSON (Javas
 |          |                                        |                                                                          |           |                      |          |
 
 
-### UML diagram
 
 
 ## Criteria C: Development
@@ -104,10 +123,12 @@ MongoDB is a document database for non-relational database stored in JSON (Javas
 2. React framework
 3. Next.js library
 4. CSS, Sass stylesheet
-5. Database
-6. MongoDB database program
-7. Global Giving API
-8. Guard clause
+5. Tailwind CSS library
+6. Framer motion library
+7. Database
+8. MongoDB database program
+9. Global Giving API
+10. Guard clause
 
 
 ### Creating the UI
@@ -118,6 +139,11 @@ The UI (user interface) plays an important role in achieving the success criteri
 ### Creating the database
 
 As the client requested, the website must include a storage system that stores data on the server database. There is one table to classify the users. I used mongoDB because it stores data on the server instead of locally.
+
+
+
+
+
 
 ## Citation
 1. “Giving Statistics.” Charity Navigator, 2018, https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42. Accessed 23 August 2022.
