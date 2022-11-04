@@ -68,7 +68,8 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 4. Users can click the 'Search' button (or Enter) to display information cards for the matching organizations in a search results area.
 5. Users can see organization information cards in the search results area containing name, title, and a short desciption:
 6. The organization’s information card hyperlink opens a new tab on that organization’s home page.
-7. Users can see a page footer with links to your social media accounts, including social media icons (like the Twitter icon).
+7. The website allow users to quickly navigate to charities that are similar to those they have searched.
+8. Users can see a page footer with links to your social media accounts, including social media icons (like the Instagram icon).
 
 
 ## Criteria B: Design
