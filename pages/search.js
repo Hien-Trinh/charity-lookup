@@ -1,5 +1,4 @@
 import Head from "next/head"
-import { motion } from "framer-motion"
 import SearchBar from "../components/SearchBar"
 
 export async function getServerSideProps(context) {
@@ -28,9 +27,9 @@ export default function search({ output }) {
             <Head>
                 <title>Charity search</title>
             </Head>
-            <motion.div className="pl-36 pt-6" layoutId="searchbar">
+            <div className="pl-36 pt-6" layoutId="searchbar">
                 <SearchBar />
-            </motion.div>
+            </div>
             <div className="pt-10 pl-10">
                 <ul>
                     {output !== "empty" ? (
