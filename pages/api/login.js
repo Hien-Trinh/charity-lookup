@@ -1,5 +1,6 @@
 import { compare } from "bcrypt"
-import { sign, verify } from "jsonwebtoken"
+import { sign } from "jsonwebtoken"
+import cookie from "cookie"
 
 const sqlite = require("sqlite")
 const sqlite3 = require("sqlite3")
@@ -31,7 +32,17 @@ export default async function login(req, res) {
                         expiresIn: "1h",
                     })
 
-                    res.json({ message: "Logged in!", token: jwt })
+                    res.setHeader(
+                        "Set-Cookie",
+                        cookie.serialize("auth", jwt, {
+                            httpOnly: true,
+                            secure: process.env.NODE_ENV !== "development",
+                            sameSite: "strict",
+                            maxAge: 3600,
+                            path: "/",
+                        })
+                    )
+                    res.json({ message: "Login success" })
                 } else {
                     res.json({ message: "Login failed" })
                 }

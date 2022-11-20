@@ -1,26 +1,12 @@
 const sqlite = require("sqlite")
 const sqlite3 = require("sqlite3")
-import { verify } from "jsonwebtoken"
+import { authenticated } from "../../authenticate"
 
 async function openDb() {
     return sqlite.open({
         filename: "./database.sqlite",
         driver: sqlite3.Database,
     })
-}
-
-const authenticated = (fn) => (req, res) => {
-    verify(
-        req.headers.authorization,
-        "" + process.env.auth_secret,
-        async function (err, decoded) {
-            if (!err && decoded) {
-                return await fn(req, res)
-            }
-
-            res.status(401).json({ message: "Sorry you are not authenticated" })
-        }
-    )
 }
 
 export default authenticated(async function getPersonById(req, res) {
