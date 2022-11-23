@@ -7,7 +7,7 @@ const sqlite3 = require("sqlite3")
 
 async function openDb() {
     return sqlite.open({
-        filename: "./database.sqlite",
+        filename: "../database.sqlite",
         driver: sqlite3.Database,
     })
 }
@@ -19,6 +19,12 @@ export default async function login(req, res) {
         const person = await db.get("SELECT * FROM Person WHERE email = ?", [
             req.body.email,
         ])
+
+        if (!person) {
+            res.status(401).json({ message: "Wrong email or password", success: false })
+            return
+        }
+
         compare(
             req.body.password,
             person.password,
@@ -42,13 +48,13 @@ export default async function login(req, res) {
                             path: "/",
                         })
                     )
-                    res.json({ message: "Login success" })
+                    res.json({ message: "Login success", success: true })
                 } else {
-                    res.json({ message: "Login failed" })
+                    res.json({ message: "Login failed", success: false })
                 }
             }
         )
     } else {
-        res.status(405).json({ message: "We only support POST" })
+        res.status(405).json({ message: "We only support POST", success: false })
     }
 }

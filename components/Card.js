@@ -1,6 +1,7 @@
 import styles from "./Card.module.scss"
 import { useRef } from "react"
 import Link from "next/link"
+import Router from "next/router"
 
 export default function Card({ login }) {
     const emailRef = useRef()
@@ -16,10 +17,13 @@ export default function Card({ login }) {
             body: JSON.stringify({
                 email: emailRef.current.value,
                 password: passwordRef.current.value,
-            })
+            }),
         })
         const json = await resp.json()
         console.log(json)
+        if (json.success) {
+            Router.push("/")
+        }
     }
 
     async function handleSignup() {
@@ -32,10 +36,13 @@ export default function Card({ login }) {
                 email: emailRef.current.value,
                 name: nameRef.current.value,
                 password: passwordRef.current.value,
-            })
+            }),
         })
         const json = await resp.json()
         console.log(json)
+        if (json.success) {
+            Router.push("/")
+        }
     }
 
     async function handleClick() {
@@ -69,9 +76,13 @@ export default function Card({ login }) {
                 {login ? "Login" : "Sign Up"}
             </button>
             {login ? (
-                <Link href="./signup"><div className={styles.link}>Create a new account.</div></Link>
+                <Link href="./signup">
+                    <div className={styles.link}>Create a new account.</div>
+                </Link>
             ) : (
-                <Link href="./login"><div className={styles.link}>Already have an account?</div></Link>
+                <Link href="./login">
+                    <div className={styles.link}>Already have an account?</div>
+                </Link>
             )}
         </div>
     )

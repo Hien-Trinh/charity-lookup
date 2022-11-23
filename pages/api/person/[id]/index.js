@@ -4,7 +4,7 @@ import { authenticated } from "../../authenticate"
 
 async function openDb() {
     return sqlite.open({
-        filename: "./database.sqlite",
+        filename: "../database.sqlite",
         driver: sqlite3.Database,
     })
 }

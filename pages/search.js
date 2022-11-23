@@ -1,5 +1,6 @@
 import Head from "next/head"
 import SearchBar from "../components/SearchBar"
+import Link from "next/link"
 
 export async function getServerSideProps(context) {
     const dir = `https://api.globalgiving.org/api/public/services/search/projects?api_key=5daeb019-df53-43ea-a550-0621ec8787bf&q=${context.query.dir}`
@@ -35,12 +36,11 @@ export default function search({ output }) {
                     {output !== "empty" ? (
                         output.map((res) => (
                             <li key={res.id}>
-                                <a
-                                    href={res.contactUrl}
-                                    className="text-xl text-white hover:text-blue-500 hover:underline"
-                                >
-                                    {res.title}
-                                </a>
+                                <Link href={res.contactUrl}>
+                                    <a className="text-xl text-white hover:text-blue-500 hover:underline">
+                                        {res.title}
+                                    </a>
+                                </Link>
                                 <p className="text-base text-white ">
                                     {res.summary.slice(0, 100)}...
                                 </p>

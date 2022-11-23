@@ -5,7 +5,7 @@ const sqlite3 = require("sqlite3")
 
 async function openDb() {
     return sqlite.open({
-        filename: "./database.sqlite",
+        filename: "../database.sqlite",
         driver: sqlite3.Database,
     })
 }
@@ -21,9 +21,9 @@ export default async function signup(req, res) {
             await statement.run(req.body.name, req.body.email, hash)
 
             const person = await db.all("SELECT id, email, name FROM Person")
-            res.json(person)
+            res.json({ message: "Signup success", success: true })
         })
     } else {
-        res.status(405).json({ message: "We only support POST" })
+        res.status(405).json({ message: "We only support POST", success: false })
     }
 }
