@@ -52,7 +52,7 @@ Tailwind is a CSS framework that lets developers use classes in the markup langu
 The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide<sup>[[8]](https://www.globalgiving.org/api/)</sup>.
 
 
-#### MongoDB Atlas
+#### SQLite
 MongoDB is a document database for non-relational database stored in JSON (Javascript Object Notation) format<sup>[[9]](https://www.interviewbit.com/blog/mongodb-vs-mysql/)</sup>. As my solution does not require relational database and is build using Javascript, it's more beneficial to use mongoDB for it's speed, scalability, and formatting instead of SQL database programs.
 
 
