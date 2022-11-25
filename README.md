@@ -108,9 +108,9 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 ***Figure 4:*** Flow diagram of the Search function
 
 
-### Database UML Diagram
+### Database ER Diagram
 
-![DatabaseUML](https://user-images.githubusercontent.com/89367058/199873136-4367509f-d541-4c7d-806c-944acdd962e3.png)
+![DatabaseER](https://user-images.githubusercontent.com/89367058/203893228-0049cb27-cd7c-419d-9d3e-5c5d4d47b40c.png)
 
 ***Figure 3:*** ER diagram for the database. Visualized version of the database.
 
