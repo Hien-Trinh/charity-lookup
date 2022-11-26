@@ -2,6 +2,7 @@ import styles from "../styles/index.module.scss"
 import Head from "next/head"
 import SearchBar from "../components/SearchBar"
 import Logo from "../components/Logo"
+import Slogan from "../components/Slogan"
 
 export default function Home() {
     return (
@@ -10,9 +11,9 @@ export default function Home() {
                 <title>Charity search</title>
             </Head>
             <Logo />
+            <Slogan />
             <div
                 className={styles.searchbar}
-                layoutId="searchbar"
             >
                 <SearchBar />
             </div>

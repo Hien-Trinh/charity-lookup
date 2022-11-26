@@ -1,5 +1,5 @@
 import Head from "next/head"
-import SearchBar from "../components/SearchBar"
+import Header from "../components/Header"
 import Link from "next/link"
 
 export async function getServerSideProps(context) {
@@ -28,9 +28,7 @@ export default function search({ output }) {
             <Head>
                 <title>Charity search</title>
             </Head>
-            <div className="pl-36 pt-6" layoutId="searchbar">
-                <SearchBar />
-            </div>
+            <Header />
             <div className="pt-10 pl-10">
                 <ul>
                     {output !== "empty" ? (

@@ -2,7 +2,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -150%) scale(.8);
+    transform: translate(-50%, -50%);
     animation: fill-anim 4s ease forwards 5s;
 
     .path:nth-child(1) {
@@ -87,7 +87,6 @@
         stroke-dashoffset: 0;
     }
 }
-
 @keyframes fill-anim {
     0% {
         fill: transparent;
@@ -100,14 +99,12 @@
         transform: translate(-50%, -150%) scale(.7);
     }
 }
-
 .blur {
+    width: 100vw;
+    height: 100vh;
     position: absolute;
-    width: 999px;
-    height: 120px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -130%);
+    top: 0;
+    left: 0;
     background: rgba(37, 40, 53, 0.5);
     backdrop-filter: blur(10px);
     animation: focus 3s ease forwards 4s;

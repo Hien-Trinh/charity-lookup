@@ -3,4 +3,19 @@
     margin-top: 50vh;
     margin-left: auto;
     margin-right: auto;
+    opacity: 0;
+    animation: reveal 2s ease forwards 7s;
+}
+
+@keyframes reveal {
+    from {
+        top: 55%;
+        opacity: 0;
+        filter: blur(40px);
+    }
+    to {
+        top: 50%;
+        opacity: 1;
+        filter: blur(0px);
+    }
 }
