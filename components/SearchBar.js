@@ -28,7 +28,7 @@ export default function SearchBar() {
                 }
             />
             <button
-                className="w-1/5 h-11 font-bold bg-gray-400 rounded-r-full shadow-2xl"
+                className={styles.button}
                 onClick={handleClick}
             >
                 Search

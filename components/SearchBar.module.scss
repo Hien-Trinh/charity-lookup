@@ -25,3 +25,17 @@
     box-sizing: border-box;
     padding: 0 25px;
 }
+
+.button{
+    width: 117.4px;
+    height: 44px;
+    border-top-right-radius: 24px;
+    border-bottom-right-radius: 24px;
+    background: rgb(156 163 175);
+    --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    font-weight: 700;
+    cursor: pointer;
+}

@@ -41,7 +41,7 @@ export default function Card({ login }) {
         const json = await resp.json()
         console.log(json)
         if (json.success) {
-            Router.push("/")
+            Router.push("/login")
         }
     }
 

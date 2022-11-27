@@ -3,8 +3,10 @@ import Head from "next/head"
 import SearchBar from "../components/SearchBar"
 import Logo from "../components/Logo"
 import Slogan from "../components/Slogan"
+import Header from "../components/Header"
+import { isLoggedIn } from "./api/isLoggedIn"
 
-export default function Home() {
+export default function Home({ cookie }) {
     return (
         <div>
             <Head>
@@ -12,11 +14,15 @@ export default function Home() {
             </Head>
             <Logo />
             <Slogan />
-            <div
-                className={styles.searchbar}
-            >
+            <div className={styles.searchbar}>
                 <SearchBar />
             </div>
+            <Header isSearchBar={false} isLoggedIn={cookie} />
         </div>
     )
+}
+
+Home.getInitialProps = async (ctx) => {
+    const cookie = await isLoggedIn(ctx)
+    return { cookie }
 }

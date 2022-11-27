@@ -28,8 +28,7 @@ export default function search({ output }) {
             <Head>
                 <title>Charity search</title>
             </Head>
-            <Header />
-            <div className="pt-10 pl-10">
+            <div className="pt-28 pl-10">
                 <ul>
                     {output !== "empty" ? (
                         output.map((res) => (
@@ -50,6 +49,7 @@ export default function search({ output }) {
                     )}
                 </ul>
             </div>
+            <Header isSearchBar={true} />
         </div>
     )
 }
