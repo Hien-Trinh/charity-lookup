@@ -108,19 +108,30 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 ***Figure 4:*** Flow diagram of the Search function
 
 
-### Database UML Diagram
+### Database ER Diagram
 
-![DatabaseUML](https://user-images.githubusercontent.com/89367058/199873136-4367509f-d541-4c7d-806c-944acdd962e3.png)
+![DatabaseER](https://user-images.githubusercontent.com/89367058/203893228-0049cb27-cd7c-419d-9d3e-5c5d4d47b40c.png)
 
 ***Figure 3:*** ER diagram for the database. Visualized version of the database.
 
-### Databse Table (example)
+### Database Table (example)
 
-**Table: User**
-| ID | email                           | password                                                         | search_history                  |
-|----|---------------------------------|------------------------------------------------------------------|---------------------------------|
-| 1  | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd | [China, water, starvation]      |
-| 2  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 | [Pakistan, Bangladesh, Vietnam] |
+**Table: Person**
+| ID | name     | email                           | password                                                         |
+|----|----------|---------------------------------|------------------------------------------------------------------|
+| 1  | "Nagisa" | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd |
+| 2  | "David"  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 |
+
+**Table: SearchHistory**
+| ID | searchKey    | ownerID |
+|----|--------------|---------|
+| 1  | "China"      | 1       |
+| 2  | "Pakistan"   | 1       |
+| 3  | "water"      | 1       |
+| 4  | "starvation" | 2       |
+| 5  | "Bangladesh" | 2       |
+| 6  | "Vietnam"    | 2       |
+
 
 ***Figure 4:*** User table with some examples.
 
