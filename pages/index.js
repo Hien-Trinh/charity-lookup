@@ -22,7 +22,11 @@ export default function Home({ cookie }) {
     )
 }
 
-Home.getInitialProps = async (ctx) => {
+export async function getServerSideProps(ctx) {
     const cookie = await isLoggedIn(ctx)
-    return { cookie }
+    return {
+        props: {
+            cookie,
+        },
+    }
 }

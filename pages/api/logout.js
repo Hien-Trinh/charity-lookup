@@ -1,7 +1,6 @@
-import { authenticated } from "./authenticate.js"
 import cookie from "cookie"
 
-export default authenticated(async function logout(req, res) {
+export default async function logout(req, res) {
     if (req.method === "POST") {
         res.setHeader(
             "Set-Cookie",
@@ -21,4 +20,4 @@ export default authenticated(async function logout(req, res) {
             success: false,
         })
     }
-})
+}
