@@ -6,6 +6,15 @@ import Slogan from "../components/Slogan"
 import Header from "../components/Header"
 import { isLoggedIn } from "./api/isLoggedIn"
 
+export async function getServerSideProps(ctx) {
+    const cookie = await isLoggedIn(ctx)
+    return {
+        props: {
+            cookie,
+        },
+    }
+}
+
 export default function Home({ cookie }) {
     return (
         <div>
@@ -15,18 +24,9 @@ export default function Home({ cookie }) {
             <Logo />
             <Slogan />
             <div className={styles.searchbar}>
-                <SearchBar />
+                <SearchBar isLoggedIn={cookie} />
             </div>
             <Header isSearchBar={false} isLoggedIn={cookie} />
         </div>
     )
-}
-
-export async function getServerSideProps(ctx) {
-    const cookie = await isLoggedIn(ctx)
-    return {
-        props: {
-            cookie,
-        },
-    }
 }

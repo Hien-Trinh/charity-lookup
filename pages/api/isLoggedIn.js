@@ -1,4 +1,12 @@
+import { verify } from "jsonwebtoken"
+
 export async function isLoggedIn(ctx) {
-    const cookie = ctx.req === undefined ? ctx.req.headers.cookie : null
-    return cookie
+    try {
+        var decoded = verify(ctx.req.cookies.auth, "" + process.env.auth_secret)
+    } catch (err) {
+        console.log(err)
+        return false
+    }
+
+    return decoded.sub
 }

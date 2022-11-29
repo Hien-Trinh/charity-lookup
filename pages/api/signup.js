@@ -19,8 +19,6 @@ export default async function signup(req, res) {
                 "INSERT INTO Person (name, email, password) VALUES (?, ?, ?)"
             )
             await statement.run(req.body.name, req.body.email, hash)
-
-            const person = await db.all("SELECT id, email, name FROM Person")
             res.json({ message: "Signup success", success: true })
         })
     } else {

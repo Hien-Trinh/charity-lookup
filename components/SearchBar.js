@@ -1,14 +1,26 @@
 import styles from "./SearchBar.module.scss"
-import { useRouter } from "next/router"
 import { useState } from "react"
+import Router from "next/router"
 
-export default function SearchBar() {
+export default function SearchBar({ isLoggedIn }) {
     const [data, setData] = useState({ dir: "" })
-    const router = useRouter()
 
-    const handleClick = (e) => {
-        e.preventDefault()
-        router.push({
+    async function handleClick() {
+        console.log(isLoggedIn)
+        const resp = await fetch("/api/setSearchHistory", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                searchKey: data.dir,
+                ownerId: isLoggedIn,
+            }),
+        })
+        const json = await resp.json()
+        console.log(json)
+
+        Router.push({
             pathname: data.dir ? "../search" : "../",
             query: data.dir ? data : null,
         })
@@ -27,10 +39,7 @@ export default function SearchBar() {
                     })
                 }
             />
-            <button
-                className={styles.button}
-                onClick={handleClick}
-            >
+            <button className={styles.button} onClick={handleClick}>
                 Search
             </button>
         </form>

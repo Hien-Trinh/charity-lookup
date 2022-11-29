@@ -10,6 +10,8 @@ export default function Header({ isSearchBar, isLoggedIn }) {
                 "Content-Type": "application/json",
             },
         })
+        const json = await resp.json()
+        console.log(json)
         Router.push("/login")
     }
 
@@ -21,7 +23,7 @@ export default function Header({ isSearchBar, isLoggedIn }) {
         >
             {isSearchBar ? (
                 <div className={styles.SearchBar}>
-                    <SearchBar />
+                    <SearchBar isLoggedIn={ isLoggedIn } />
                 </div>
             ) : null}
             <button className={styles.button} onClick={handleClick}>
