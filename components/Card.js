@@ -46,6 +46,10 @@ export default function Card({ login }) {
     }
 
     async function handleClick() {
+        if (e.key !== "Enter") {
+            return
+        }
+
         login ? await handleLogin() : await handleSignup()
     }
 
@@ -57,6 +61,7 @@ export default function Card({ login }) {
                 placeholder="email"
                 className={styles.inputField}
                 ref={emailRef}
+                onKeyDown={handleClick}
             />
             {login ? null : (
                 <input
@@ -64,6 +69,7 @@ export default function Card({ login }) {
                     placeholder="name"
                     className={styles.inputField}
                     ref={nameRef}
+                    onKeyDown={handleClick}
                 />
             )}
             <input
@@ -71,6 +77,7 @@ export default function Card({ login }) {
                 placeholder="password"
                 className={styles.inputField}
                 ref={passwordRef}
+                onKeyDown={handleClick}
             />
             <button className={styles.button} onClick={handleClick}>
                 {login ? "Login" : "Sign Up"}

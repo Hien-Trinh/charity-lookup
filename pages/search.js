@@ -1,9 +1,11 @@
 import Head from "next/head"
 import Header from "../components/Header"
 import Link from "next/link"
+import { isLoggedIn } from "./api/isLoggedIn"
 
-export async function getServerSideProps(context) {
-    const dir = `https://api.globalgiving.org/api/public/services/search/projects?api_key=5daeb019-df53-43ea-a550-0621ec8787bf&q=${context.query.dir}`
+export async function getServerSideProps(ctx) {
+    const cookie = await isLoggedIn(ctx)
+    const dir = `https://api.globalgiving.org/api/public/services/search/projects?api_key=5daeb019-df53-43ea-a550-0621ec8787bf&q=${ctx.query.dir}`
 
     const result = await fetch(dir, {
         method: "GET",
@@ -19,10 +21,10 @@ export async function getServerSideProps(context) {
         output = allSearchResult.project
     }
 
-    return { props: { output } }
+    return { props: { output, cookie } }
 }
 
-export default function search({ output }) {
+export default function search({ output, cookie }) {
     return (
         <div>
             <Head>
@@ -49,7 +51,7 @@ export default function search({ output }) {
                     )}
                 </ul>
             </div>
-            <Header isSearchBar={true} />
+            <Header isSearchBar={true} isLoggedIn={cookie} />
         </div>
     )
 }

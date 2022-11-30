@@ -6,8 +6,7 @@ export default function SearchBar({ isLoggedIn }) {
     const [data, setData] = useState({ dir: "" })
 
     async function handleClick() {
-        console.log(isLoggedIn)
-        const resp = await fetch("/api/setSearchHistory", {
+        await fetch("/api/setSearchHistory", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -17,8 +16,6 @@ export default function SearchBar({ isLoggedIn }) {
                 ownerId: isLoggedIn,
             }),
         })
-        const json = await resp.json()
-        console.log(json)
 
         Router.push({
             pathname: data.dir ? "../search" : "../",
@@ -27,12 +24,17 @@ export default function SearchBar({ isLoggedIn }) {
     }
 
     return (
-        <form className={styles.container}>
+        <div className={styles.container} noValidate autoComplete="on">
             <input
                 type="search"
                 placeholder="Search"
                 className={styles.inputField}
                 value={data.dir}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleClick()
+                    }
+                }}
                 onChange={(event) =>
                     setData({
                         dir: event.target.value,
@@ -42,6 +44,6 @@ export default function SearchBar({ isLoggedIn }) {
             <button className={styles.button} onClick={handleClick}>
                 Search
             </button>
-        </form>
+        </div>
     )
 }
