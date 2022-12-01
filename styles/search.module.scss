@@ -1,0 +1,39 @@
+.listContainer {
+    width: 750px;
+    margin-left: 7rem;
+    margin-top: 7rem;
+}
+
+.listItems {
+    display: flex;
+    overflow: hidden;
+    padding-right: 20px;
+    background-color: #191c26;
+    border-radius: 20px;
+}
+
+.text {
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    .title {
+        color: white;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        padding-bottom: 1rem;
+
+        :hover {
+            color: rgb(59 130 246);
+            text-decoration-line: underline;
+        }
+    }
+
+    .summary {
+        color: white;
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+}

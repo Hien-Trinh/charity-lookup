@@ -1,6 +1,8 @@
+import styles from "../styles/search.module.scss"
 import Head from "next/head"
-import Header from "../components/Header"
 import Link from "next/link"
+import Image from "next/image"
+import Header from "../components/Header"
 import { isLoggedIn } from "./api/isLoggedIn"
 
 export async function getServerSideProps(ctx) {
@@ -15,6 +17,7 @@ export async function getServerSideProps(ctx) {
     }).then((res) => res.json())
 
     var allSearchResult = result.search.response.projects
+    console.log(allSearchResult)
     var output = "empty"
 
     if (allSearchResult !== undefined) {
@@ -30,19 +33,30 @@ export default function search({ output, cookie }) {
             <Head>
                 <title>Charity search</title>
             </Head>
-            <div className="pt-28 pl-10">
+            <div className={styles.listContainer}>
                 <ul>
                     {output !== "empty" ? (
                         output.map((res) => (
                             <li key={res.id}>
-                                <Link href={res.contactUrl}>
-                                    <a className="text-xl text-white hover:text-blue-500 hover:underline">
-                                        {res.title}
-                                    </a>
-                                </Link>
-                                <p className="text-base text-white ">
-                                    {res.summary.slice(0, 100)}...
-                                </p>
+                                <div className={styles.listItems}>
+                                    <Image
+                                        loader={() => res.imageLink}
+                                        src={res.imageLink}
+                                        width={400}
+                                        height={250}
+                                        alt="Picture"
+                                    />
+                                    <div className={styles.text}>
+                                        <Link href={res.contactUrl}>
+                                            <a className={styles.title}>
+                                                {res.title}
+                                            </a>
+                                        </Link>
+                                        <p className={styles.summary}>
+                                            {res.summary.slice(0, 100)}...
+                                        </p>
+                                    </div>
+                                </div>
                                 <br />
                             </li>
                         ))
