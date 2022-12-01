@@ -9,28 +9,23 @@ import isLoggedIn from "./api/isLoggedIn"
 import getSearch from "./api/getSearch"
 
 export async function getServerSideProps(ctx) {
-    const cookie = await isLoggedIn(ctx)
+    const auth = await isLoggedIn(ctx)
     const searchResult = await getSearch(ctx)
 
-    return { props: { searchResult, cookie } }
+    return { props: { searchResult, isLoggedIn: auth } }
 }
 
-export default function search({ searchResult, cookie }) {
-    async function handleSave() {
-        await fetch("/api/setSearchHistory", {
+export default function search({ searchResult, isLoggedIn }) {
+    async function handleSave(charityId) {
+        await fetch("/api/setFavorite", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                searchKey: data.dir,
+                charityId: charityId,
                 ownerId: isLoggedIn,
             }),
-        })
-
-        Router.push({
-            pathname: data.dir ? "../search" : "../",
-            query: data.dir ? data : null,
         })
     }
 
@@ -76,7 +71,7 @@ export default function search({ searchResult, cookie }) {
                                                     />
                                                 }
                                                 color="error"
-                                                onPress={handleSave}
+                                                onPress={() => handleSave(res.id)}
                                             ></Button>
                                         </Tooltip>
                                     </div>
@@ -89,7 +84,7 @@ export default function search({ searchResult, cookie }) {
                     )}
                 </ul>
             </div>
-            <Header isSearchBar={true} isLoggedIn={cookie} />
+            <Header isSearchBar={true} isLoggedIn={isLoggedIn} />
         </div>
     )
 }

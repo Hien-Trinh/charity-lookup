@@ -15,7 +15,12 @@ export default async function setFavorite(req, res) {
         const statement = await db.prepare(
             "INSERT INTO Favorite (charityId, ownerId) VALUES (?, ?)"
         )
-        await statement.run(req.body.charityId, req.body.ownerId)
+        try {
+            await statement.run(req.body.charityId, req.body.ownerId)
+        } catch (err) {
+            console.log(err)
+        }
+        
         const allFavorite = await db.all("SELECT * FROM Favorite")
         console.log(allFavorite)
         res.json({ message: "Favorite added", success: true })
