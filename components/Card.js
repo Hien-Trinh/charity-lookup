@@ -1,5 +1,5 @@
 import styles from "./Card.module.scss"
-import { useRef } from "react"
+import { useRef, useState } from "react"
 import Link from "next/link"
 import Router from "next/router"
 
@@ -7,6 +7,7 @@ export default function Card({ login }) {
     const emailRef = useRef()
     const nameRef = useRef()
     const passwordRef = useRef()
+    const [message, setMessage] = useState()
 
     async function handleLogin() {
         const resp = await fetch("/api/login", {
@@ -20,9 +21,11 @@ export default function Card({ login }) {
             }),
         })
         const json = await resp.json()
-        console.log(json)
+
         if (json.success) {
             Router.push("/")
+        } else {
+            setMessage(json.message)
         }
     }
 
@@ -39,9 +42,11 @@ export default function Card({ login }) {
             }),
         })
         const json = await resp.json()
-        console.log(json)
+        
         if (json.success) {
             Router.push("/login")
+        } else {
+            setMessage(json.message)
         }
     }
 
@@ -52,6 +57,7 @@ export default function Card({ login }) {
     return (
         <div className={styles.container}>
             <div className={styles.title}>{login ? "Login" : "Sign Up"}</div>
+            {message ? <div className={styles.message}>{message}</div> : null}
             <input
                 type="text"
                 placeholder="email"
