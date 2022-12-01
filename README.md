@@ -15,21 +15,22 @@
 
 ### Definition of Problem
 
-Throughout the previous centuries, total giving – the amount of money that went to charitable purposes – accounted for around 2% of the GDP worldwide, and in 2017 it was a whopping $410.02 billion<sup>[[1]](https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42)</sup>. Therefore, the demand for a tool to help people find charity organizations worldwide has risen. My client, an acquaintance, wants to be involved in the cause but finds it challenging to look for the right charity based on his preference.
+Throughout the previous centuries, total giving – the amount of money that went to charitable purposes – accounted for around 2% of the GDP worldwide, and in 2017 it was a whopping $410.02 billion<sup>[[1]](https://www.charitynavigator.org/index.cfm?bay=content.view&cpid=42)</sup>. Due to the high demand for charitable purposes, the demand for a tool to help people find charity organizations worldwide has risen. My client, an acquaintance, wants to be involved in the cause but finds it challenging to look for the right charity based on his preference.
 
 
 ### Proposed Solution
 
-The web application utilizes the Global Giving organizations API to provide users with a list of global charities to find one that matches their philanthropic interests. It uses Javascript with frameworks such as React and Next.js as the scripting language, HTML as a markup language, and CSS with Sass and Tailwind CSS as a stylesheet language.
+The web application will have a search engine that ultilizes the Global Giving organizations API to provide users with a list of global charities to find one that matches their philanthropic interests. Compared to an application, a web application is immediately accessible without need for installation and is compatible regardless of operating systems. This is useful as the majority of the program (database and API fetching) will run server-side.
 
 
 #### Javascript
 
-First, Javascript is a high-level programming language with simple syntax – similar to that of Python. As a result, it’s easy to pick up for a Python programmer. Secondly, Javascript is the most popular programming language for web applications’ client-side behavior thanks to its abundance of third-party libraries<sup>[[2]](https://w3techs.com/technologies/details/cp-javascript/)</sup>.
+First, Javascript is a high-level programming language with simple syntax – similar to that of Python. As a result, it’s easy for other developers to understand and extend upon. Secondly, Javascript is the most popular programming language for web applications’ client-side behavior thanks to its abundance of third-party libraries<sup>[[2]](https://w3techs.com/technologies/details/cp-javascript/)</sup>, which provide a high level of abstraction to useful but complicated functionalities.
 
 
 #### React and Next.js
 
+Extensibility
 React is an open-source Javascript framework for creating interactive UI. First introduced by Facebook (Meta) in 2013, it became one of the most popular JS frameworks for website development<sup>[[3]](https://reactjs.org)</sup>. 
 
 Next.js is an open-source framework built with Node.js that adds functionalities such as server-side rendering, static websites, smart bundling, etc., for React-based websites<sup>[[4]](https://nextjs.org)</sup>.
@@ -40,11 +41,6 @@ Next.js is an open-source framework built with Node.js that adds functionalities
 Cascading Style Sheets (CSS) is a stylesheet language that determines the styles – position, size, color, etc. – of the content represented by HTML or XML<sup>[[5]](https://developer.mozilla.org/en-US/docs/Web/CSS)</sup>. 
 
 Syntactically Awesome Style Sheets (Sass) is an extension of CSS that allows developers to use features such as variables, imports, etc.<sup>[[6]](https://www.w3schools.com/sass/sass_intro.php)</sup>.
-
-
-#### Tailwind CSS
-
-Tailwind is a CSS framework that lets developers use classes in the markup language (HTML) to apply CSS properties directly<sup>[[7]](https://tailwindcss.com)</sup>.
 
 
 #### Global Giving API
@@ -73,6 +69,11 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 
 
 ## Criteria B: Design
+
+### Design Statement
+
+The web application uses Javascript with frameworks such as React and Next.js as the scripting language, HTML as a markup language, and CSS with Sass and Tailwind CSS as a stylesheet language.
+
 
 ### Solution Sketch
 
@@ -193,7 +194,6 @@ As the client requested, the website must include a storage system that stores d
 4. “Next.js by Vercel - The React Framework.” Next.js, https://nextjs.org. Accessed 23 August 2022.
 5. “CSS: Cascading Style Sheets | MDN.” MDN Web Docs, 16 August 2022, https://developer.mozilla.org/en-US/docs/Web/CSS. Accessed 23 August 2022.
 6. “Sass Introduction.” W3Schools, https://www.w3schools.com/sass/sass_intro.php. Accessed 23 August 2022.
-7. “Tailwind CSS - Rapidly build modern websites without ever leaving your HTML.” Tailwind CSS, https://tailwindcss.com. Accessed 24 August 2022.
 8. “GlobalGiving API Documentation.” GlobalGiving, https://www.globalgiving.org/api/. Accessed 4 November 2022.
 9. MongoDB vs mysql: Know the difference. InterviewBit. (2022, August 16). Retrieved November 4, 2022, from https://www.interviewbit.com/blog/mongodb-vs-mysql/.
 10. “Pricing – Vercel.” Vercel, https://vercel.com/pricing. Accessed 4 November 2022.
