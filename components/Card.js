@@ -42,7 +42,7 @@ export default function Card({ login }) {
             }),
         })
         const json = await resp.json()
-        
+
         if (json.success) {
             Router.push("/login")
         } else {

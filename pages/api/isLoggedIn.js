@@ -1,6 +1,6 @@
 import { verify } from "jsonwebtoken"
 
-export async function isLoggedIn(ctx) {
+export default async function isLoggedIn(ctx) {
     try {
         var decoded = verify(ctx.req.cookies.auth, "" + process.env.auth_secret)
     } catch (err) {

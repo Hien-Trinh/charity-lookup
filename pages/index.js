@@ -4,7 +4,7 @@ import SearchBar from "../components/SearchBar"
 import Logo from "../components/Logo"
 import Slogan from "../components/Slogan"
 import Header from "../components/Header"
-import { isLoggedIn } from "./api/isLoggedIn"
+import isLoggedIn from "./api/isLoggedIn"
 
 export async function getServerSideProps(ctx) {
     const cookie = await isLoggedIn(ctx)
