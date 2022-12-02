@@ -1,7 +1,15 @@
+.searchKey {
+    color: rgb(255 255 255 / .7);
+    font-size: 1rem;
+    font-style: italic;
+    margin-left: 7.5rem;
+    margin-top: 101px;
+}
+
 .listContainer {
     width: 750px;
     margin-left: 7rem;
-    margin-top: 7rem;
+    margin-top: 19px;
 }
 
 .listItems {
@@ -40,4 +48,26 @@
 .saveButton {
     padding-top: 10px;
     padding-right: 10px;
+}
+
+.prevNext {
+    width: 750px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 50px;
+    margin-left: 7rem;
+
+    .pageNumber {
+        color: white;
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        padding: 5px;
+        cursor: pointer;
+
+        :hover {
+            color: rgb(59 130 246);
+            text-decoration-line: underline;
+        }
+    }
 }

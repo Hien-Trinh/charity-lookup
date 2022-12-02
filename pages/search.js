@@ -2,20 +2,40 @@ import styles from "../styles/search.module.scss"
 import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
+import Router from "next/router"
 import { Tooltip, Button } from "@nextui-org/react"
 import { HeartIcon } from "../components/HeartIcon"
+import { Left, Right } from "../components/ArrowIcon"
 import Header from "../components/Header"
 import isLoggedIn from "./api/isLoggedIn"
 import getSearch from "./api/getSearch"
 
 export async function getServerSideProps(ctx) {
     const auth = await isLoggedIn(ctx)
-    const searchResult = await getSearch(ctx)
+    const result = await getSearch(ctx)
+    const searchResult = await result.output
+    const searchKey = await result.q
+    const searchStart = await result.start
+    const searchNumberFound = await result.numberFound
 
-    return { props: { searchResult, isLoggedIn: auth } }
+    return {
+        props: {
+            searchResult,
+            isLoggedIn: auth,
+            searchKey,
+            searchStart,
+            searchNumberFound,
+        },
+    }
 }
 
-export default function search({ searchResult, isLoggedIn }) {
+export default function search({
+    searchResult,
+    isLoggedIn,
+    searchKey,
+    searchStart,
+    searchNumberFound,
+}) {
     async function handleSave(charityId) {
         await fetch("/api/setFavorite", {
             method: "POST",
@@ -29,11 +49,35 @@ export default function search({ searchResult, isLoggedIn }) {
         })
     }
 
+    async function handlePrev() {
+        const prevStart =
+            parseInt(searchStart) - 10 < 0 ? 0 : parseInt(searchStart) - 10
+
+        Router.push({
+            pathname: searchKey ? "../search" : "../",
+            query: { dir: searchKey, start: prevStart },
+        })
+    }
+
+    async function handleNext() {
+        const nextStart =
+            parseInt(searchStart) + 20 > searchNumberFound ? 0 : parseInt(searchStart) + 10
+
+        Router.push({
+            pathname: searchKey ? "../search" : "../",
+            query: { dir: searchKey, start: nextStart },
+        })
+    }
+
     return (
         <div>
             <Head>
                 <title>Charity search</title>
             </Head>
+            <Header isSearchBar={true} isLoggedIn={isLoggedIn} />
+            <div className={styles.searchKey}>
+                Showing results for: {searchKey}
+            </div>
             <div className={styles.listContainer}>
                 <ul>
                     {searchResult !== "empty" ? (
@@ -71,7 +115,9 @@ export default function search({ searchResult, isLoggedIn }) {
                                                     />
                                                 }
                                                 color="error"
-                                                onPress={() => handleSave(res.id)}
+                                                onPress={() =>
+                                                    handleSave(res.id)
+                                                }
                                             ></Button>
                                         </Tooltip>
                                     </div>
@@ -84,7 +130,35 @@ export default function search({ searchResult, isLoggedIn }) {
                     )}
                 </ul>
             </div>
-            <Header isSearchBar={true} isLoggedIn={isLoggedIn} />
+            <div className={styles.prevNext}>
+                <Tooltip
+                    content={"Previous page"}
+                    color="invert"
+                    placement="bottomEnd"
+                >
+                    <Button
+                        auto
+                        icon={<Left />}
+                        color="invert"
+                        onPress={handlePrev}
+                    ></Button>
+                </Tooltip>
+                <div className={styles.pageNumber}>
+                    {~~(searchStart / 10) + 1}
+                </div>
+                <Tooltip
+                    content={"Next page"}
+                    color="invert"
+                    placement="bottomStart"
+                >
+                    <Button
+                        auto
+                        icon={<Right />}
+                        color="invert"
+                        onPress={handleNext}
+                    ></Button>
+                </Tooltip>
+            </div>
         </div>
     )
 }

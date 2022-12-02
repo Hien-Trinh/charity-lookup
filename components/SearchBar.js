@@ -19,7 +19,7 @@ export default function SearchBar({ isLoggedIn }) {
 
         Router.push({
             pathname: data.dir ? "../search" : "../",
-            query: data.dir ? data : null,
+            query: { dir: data.dir, start: 0 },
         })
     }
 
