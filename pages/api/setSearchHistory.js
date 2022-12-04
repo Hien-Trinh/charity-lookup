@@ -16,8 +16,6 @@ export default async function setSearchHistory(req, res) {
             "INSERT INTO SearchHistory (searchKey, ownerId) VALUES (?, ?)"
         )
         await statement.run(req.body.searchKey, req.body.ownerId)
-        const allSearchHistory = await db.all("SELECT * FROM SearchHistory")
-        console.log(allSearchHistory)
         res.json({ message: "Search history added", success: true })
     } else {
         res.status(405).json({

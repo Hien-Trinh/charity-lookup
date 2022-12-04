@@ -17,6 +17,9 @@ async function init() {
 
     const SearchHistory = await db.all("SELECT * FROM SearchHistory")
     console.log(JSON.stringify(SearchHistory, null, 2))
+
+    const Favorite = await db.all("SELECT * FROM Favorite")
+    console.log(JSON.stringify(Favorite, null, 2))
 }
 
 init()

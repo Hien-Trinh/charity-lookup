@@ -19,3 +19,40 @@
         filter: blur(0px);
     }
 }
+
+.container {
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 45px;
+}
+
+.button {
+    padding-left: .75rem;
+    padding-right: .75rem;
+    width: 120px;
+    height: 2.5rem;
+    color: #252836;
+    border-color: transparent;
+    border-width: 1px;
+    border-radius: 3px;
+    background: rgb(156, 163, 175, 1);
+    font-size: medium;
+    font-weight: 700;
+    --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    cursor: pointer;
+    
+    opacity: 0;
+    animation: reveal 2s ease forwards 8s;
+
+    &:hover {
+        color: white;
+        border-color: white;
+        background: #252836;
+    }
+}

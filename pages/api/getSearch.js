@@ -1,5 +1,4 @@
 export default async function getSearch(ctx) {
-    console.log(ctx.query)
     const q = ctx.query.dir
     const start = ctx.query.start ? ctx.query.start : 0
     const dir = `https://api.globalgiving.org/api/public/services/search/projects?api_key=5daeb019-df53-43ea-a550-0621ec8787bf&q=${q}&start=${start}`
@@ -19,8 +18,6 @@ export default async function getSearch(ctx) {
         if (allSearchResult !== undefined) {
             output = allSearchResult.project
         }
-
-        //console.log({ output, q, start, numberFound })
 
         return { output, q, start, numberFound }
     } catch (error) {

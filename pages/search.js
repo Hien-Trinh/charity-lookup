@@ -36,7 +36,7 @@ export default function search({
     searchStart,
     searchNumberFound,
 }) {
-    async function handleSave(charityId) {
+    async function handleSave(charityId, charityTitle, charitySummary, charityImage, charityUrl) {
         await fetch("/api/setFavorite", {
             method: "POST",
             headers: {
@@ -44,6 +44,10 @@ export default function search({
             },
             body: JSON.stringify({
                 charityId: charityId,
+                charityTitle: charityTitle,
+                charitySummary: charitySummary,
+                charityImage: charityImage,
+                charityUrl: charityUrl,
                 ownerId: isLoggedIn,
             }),
         })
@@ -61,7 +65,9 @@ export default function search({
 
     async function handleNext() {
         const nextStart =
-            parseInt(searchStart) + 20 > searchNumberFound ? 0 : parseInt(searchStart) + 10
+            parseInt(searchStart) + 20 > searchNumberFound
+                ? 0
+                : parseInt(searchStart) + 10
 
         Router.push({
             pathname: searchKey ? "../search" : "../",
@@ -116,7 +122,13 @@ export default function search({
                                                 }
                                                 color="error"
                                                 onPress={() =>
-                                                    handleSave(res.id)
+                                                    handleSave(
+                                                        res.id,
+                                                        res.title,
+                                                        res.summary,
+                                                        res.imageLink,
+                                                        res.contactUrl
+                                                    )
                                                 }
                                             ></Button>
                                         </Tooltip>

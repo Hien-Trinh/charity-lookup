@@ -5,6 +5,7 @@ import Logo from "../components/Logo"
 import Slogan from "../components/Slogan"
 import Header from "../components/Header"
 import isLoggedIn from "./api/isLoggedIn"
+import Router from "next/router"
 
 export async function getServerSideProps(ctx) {
     const cookie = await isLoggedIn(ctx)
@@ -16,6 +17,46 @@ export async function getServerSideProps(ctx) {
 }
 
 export default function Home({ cookie }) {
+    async function handleSearchHistory() {
+        const url = `/api/person/${cookie}/getSearchHistoryById`
+
+        const allSearchHistory = await fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+            },
+        }).then((res) => res.json())
+
+        const lastSearch = allSearchHistory[allSearchHistory.length - 1]
+        console.log(allSearchHistory)
+
+        Router.push({
+            pathname: lastSearch.searchKey ? "../search" : "../",
+            query: { dir: lastSearch.searchKey, start: 0 },
+        })
+    }
+
+    async function handleFavorite() {
+        const url = `/api/person/${cookie}/getFavoriteById`
+
+        const allFavorite = await fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+            },
+        }).then((res) => res.json())
+
+        if(allFavorite.success === false) {
+            Router.push({
+                pathname: "../login",
+            })
+        } else {
+            Router.push({
+                pathname: "../favorites",
+            })
+        }
+    }
+
     return (
         <div>
             <Head>
@@ -27,6 +68,14 @@ export default function Home({ cookie }) {
                 <SearchBar isLoggedIn={cookie} />
             </div>
             <Header isSearchBar={false} isLoggedIn={cookie} />
+            <div className={styles.container}>
+                <button className={styles.button} onClick={handleSearchHistory}>
+                    Last search
+                </button>
+                <button className={styles.button} onClick={handleFavorite}>
+                    Favorites
+                </button>
+            </div>
         </div>
     )
 }
