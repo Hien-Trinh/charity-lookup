@@ -126,6 +126,9 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 1  | "Nagisa" | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd |
 | 2  | "David"  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 |
 
+***Figure 4:*** User table with some examples.
+
+
 **Table: SearchHistory**
 | ID | searchKey    | ownerID |
 |----|--------------|---------|
@@ -136,8 +139,16 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 5  | "Bangladesh" | 2       |
 | 6  | "Vietnam"    | 2       |
 
+***Figure 5:*** SearchHistory table with some examples.
 
-***Figure 4:*** User table with some examples.
+
+**Table: Favorite**
+| ID | charityId | charityTitle                                         | charitySummary                                                                                                                    | charityImageUrl                                    | charityUrl                       | ownerId |
+|----|-----------|------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------|---------|
+| 1  | 13517     | 'Orphans into loving foster families in China'       | 'In China, there are an estimated 90,000+ children growing up in government orphanages, the majority of whom have disabilities.   | 'https://www.globalgiving.org/pfil/13517/pict.jpg' | 'http://www.careforchildren.com' | 1       |
+| 2  | 57172     | 'Pakistan Humanitarian Crises: Flood Emergency 2022' | 'Over 35 Million humans are affected by Flooding across Pakistan since June 2022. Severe Health risks along with food insecurity. | 'https://www.globalgiving.org/pfil/57172/pict.jpg' | 'http://www.facespakistan.org'   | 1       |
+
+***Figure 6:*** Favorite table with some examples.
 
 
 ### Record of Task
