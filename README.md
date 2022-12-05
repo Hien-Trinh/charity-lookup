@@ -114,7 +114,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### Database ER Diagram
 
-![DatabaseER](https://user-images.githubusercontent.com/89367058/205527649-3df3ae28-288f-4b2a-8c41-115dc3720103.png)
+![DatabaseER](https://user-images.githubusercontent.com/89367058/205541863-d2811fb8-1655-4396-a57b-19265af01b7a.png)
 
 ***Figure 3:*** ER diagram for the database. Visualized version of the database.
 
