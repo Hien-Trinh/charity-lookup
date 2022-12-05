@@ -80,7 +80,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### Solution Sketch
 
-![solution_sketch](https://user-images.githubusercontent.com/89367058/199765500-82652c68-8cf7-453b-a998-080384e1a398.png)
+![solution_sketch](https://user-images.githubusercontent.com/89367058/205531185-81210aa0-42ce-4354-b419-041272e1e167.png)
 
 ***Figure 1:*** Sketch of purposed solution's wireframe
 
