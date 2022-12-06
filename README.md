@@ -169,14 +169,14 @@ The web application uses Javascript with frameworks such as React and Next.js as
 ## Criteria C: Development
 
 ### Tools
-1. React framework
-2. Next.js library
-3. CSS, Sass stylesheet
-4. Tailwind CSS library
-5. Framer motion library
-6. Database
-7. MongoDB Atlas
-8. Global Giving API
+1. React framework + Next.js library
+2. CSS, Sass stylesheet + Tailwind CSS library
+3. SQLite database management
+4. Global Giving API
+5. Authorization cookie
+6. JSON Web Tokens
+7. bcrypt hash
+8. API
 9. Guard clause
 
 
