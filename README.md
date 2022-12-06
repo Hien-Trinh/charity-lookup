@@ -71,16 +71,18 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### Solution Sketch
 
-![solution_sketch](https://user-images.githubusercontent.com/89367058/205531185-81210aa0-42ce-4354-b419-041272e1e167.png)
+![solution_sketch](https://user-images.githubusercontent.com/89367058/205923817-f3414fb8-7560-4675-bc45-6c0e8293effa.png)
 
 ***Figure 1:*** Sketch of purposed solution's wireframe
 
-***Fig.1*** is a wireframe showing a total of 4 screens - ```HomeScreen```, ```SearchResults```, ```LoginScreen```, and ```SignupScreen``` - connected via buttons.
+***Fig.1*** is a wireframe showing a total of 5 screens - ```HomeScreen```, ```SearchResults```, ```FavoritesScreen```, ```LoginScreen```, and ```SignupScreen``` - connected via buttons.
 - The ```LoginScreen``` and ```RegisterScreen``` are connected via the "Create one right now!"/"Login right now!" buttons.
-- From the ```SingupScreen```, signing up will automatically send the user to the ```HomeScreen```.
+- From the ```SingupScreen```, signing up will send the user to the ```LoginScreen```.
 - From the ```LoginScreen```, logging in will automatically send the user to the ```HomeScreen```.
-- From the ```HomeScreen```, the user can enter a search term in the ***searchbar*** and click ***Search*** or ***Enter key*** to go to the ```ResultsScreen``` displaying the search results, or chose to login/logout by moving to the ```LoginScreen``` via ***User icon*** on the top right corner.
-- From the ```ResultsScreen```, return to the ```HomeScreen``` via "CharityFinder"
+- From the ```HomeScreen```, the user can enter a search term in the ***searchbar*** and click ***Search*** or ***Enter key*** to go to the ```ResultsScreen``` displaying the search results.
+- From the ```HomeScreen```, the user can select to continue their previous search via ```Last search``` or view their favorites projects collection via ```Favorites```.
+- From the ```HomeScreen```, the user can login/logout by moving to the ```LoginScreen``` via ***Login/Logout*** on the top right corner.
+- From the ```ResultsScreen``` or the ```FavoritesScreen```, return to the ```HomeScreen``` via a back-arrow icon.
 
 
 ### System Diagram
