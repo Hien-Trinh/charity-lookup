@@ -39,36 +39,27 @@ Although frameworks like Next.js are just tools to assist the developers, they'r
 Next.js, in comparision to its competitors such as Angular and Vue, excels due to faster page load and more efficient data caching<sup>[[5]](https://enlear.academy/next-js-vs-angular-whos-the-ultimate-winner-of-the-frontend-development-a3ee82a6da41)</sup>. Because my solution relies heavily on data transmition, an overall faster performing website would improve user experience and reducing unnecessary traffic.
 
 
-#### CSS and Sass
-
-Cascading Style Sheets (CSS) is a stylesheet language that determines the styles – position, size, color, etc. – of the content represented by HTML or XML<sup>[[6]](https://developer.mozilla.org/en-US/docs/Web/CSS)</sup>. 
-
-Syntactically Awesome Style Sheets (Sass) is an extension of CSS that allows developers to use features such as variables, imports, etc.<sup>[[7]](https://www.w3schools.com/sass/sass_intro.php)</sup>.
-
-
 #### Global Giving API
 
-The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide<sup>[[8]](https://www.globalgiving.org/api/)</sup>.
+The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide<sup>[[6]](https://www.globalgiving.org/api/)</sup>.
 
 
 #### SQLite
-MongoDB is a document database for non-relational database stored in JSON (Javascript Object Notation) format<sup>[[9]](https://www.interviewbit.com/blog/mongodb-vs-mysql/)</sup>. As my solution does not require relational database and is build using Javascript, it's more beneficial to use mongoDB for it's speed, scalability, and formatting instead of SQL database programs.
+To operate the database, I choose to use SQLite. It's a declarative query language that is common for relational databases. Also, when identifying the issue and planning out the ER (Entity Relation) diagram and table, I noticed that classes have relation to each other. In this instance, a user has many search history items and favorites. Compared to its competitors such as MySQL, SQLite is severless, meaning that it stores the database locally on only the host machine, resulting in higher security against data leaks<sup>[[7]](https://www.thinkautomation.com/our-two-cents/sqlite-pros-and-cons-a/)</sup>.
 
 
 #### Vercel hosting service
-Next.js defaults to Vercel hosting service, which handles the distribution of service worldwide. There are different hosting option but because the website renders mostly on client side, there's no need for extra bandwidth or other resources<sup>[[10]](https://vercel.com/pricing)</sup>.
+Next.js defaults to Vercel hosting service, which handles the distribution of service worldwide. There are different hosting option but because the website renders mostly on client side, there's no need for extra bandwidth or other resources<sup>[[8]](https://vercel.com/pricing)</sup>.
 
 
 ### Success Criteria
 
-1. Login system using email and password for securing user credentials.
-2. Users can see a page heading containing the application name.
-3. Search bar provides quick and easy access to a collection of charity organizations and their updates through Global Giving API.
-4. Users can click the 'Search' button (or Enter) to display information cards for the matching organizations in a search results area.
-5. Users can see organization information cards in the search results area containing name, title, and a short desciption:
-6. The organization’s information card hyperlink opens a new tab on that organization’s home page.
-7. The website allow users to quickly navigate to charities that are similar to those they have searched.
-8. Users can see a page footer with links to your social media accounts, including social media icons (like the Instagram icon).
+1. Login system using email and password to save user preferences and history.
+2. Search bar provides quick and easy access to a collection of charity projects through Global Giving API.
+3. Users can see projects information cards in the search results area containing: title, short summary, and image
+4. The organization’s information card hyperlink opens a new tab on that organization’s home page.
+5. Function allowing users to continue their latest previous search.
+6. Function allowing users to save search results and access them from the main page.
 
 
 ## Criteria B: Design
@@ -207,8 +198,6 @@ As the client requested, the website must include a storage system that stores d
 3. “React – A JavaScript library for building user interfaces.” React, https://reactjs.org. Accessed 23 August 2022.
 4. “Next.js by Vercel - The React Framework.” Next.js, https://nextjs.org. Accessed 23 August 2022.
 5. Kapoor, Ajay. “Next js vs. Angular: Who's the Ultimate Winner of the Frontend Development?” Enlear Academy, https://enlear.academy/next-js-vs-angular-whos-the-ultimate-winner-of-the-frontend-development-a3ee82a6da41. Accessed 2 December 2022.
-6. “CSS: Cascading Style Sheets | MDN.” MDN Web Docs, 16 August 2022, https://developer.mozilla.org/en-US/docs/Web/CSS. Accessed 23 August 2022.
-7. “Sass Introduction.” W3Schools, https://www.w3schools.com/sass/sass_intro.php. Accessed 23 August 2022.
-8. “GlobalGiving API Documentation.” GlobalGiving, https://www.globalgiving.org/api/. Accessed 4 November 2022.
-9. MongoDB vs mysql: Know the difference. InterviewBit. (2022, August 16). Retrieved November 4, 2022, from https://www.interviewbit.com/blog/mongodb-vs-mysql/.
-10. “Pricing – Vercel.” Vercel, https://vercel.com/pricing. Accessed 4 November 2022.
+6. “GlobalGiving API Documentation.” GlobalGiving, https://www.globalgiving.org/api/. Accessed 4 November 2022.
+7. “SQLite pros and cons: a short overview.” ThinkAutomation, https://www.thinkautomation.com/our-two-cents/sqlite-pros-and-cons-a/. Accessed 6 December 2022.
+8. “Pricing – Vercel.” Vercel, https://vercel.com/pricing. Accessed 4 November 2022.
