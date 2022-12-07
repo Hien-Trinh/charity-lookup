@@ -30,42 +30,36 @@ First, Javascript is a high-level programming language with simple syntax – si
 
 #### React and Next.js
 
-Extensibility
 React is an open-source Javascript framework for creating interactive UI. First introduced by Facebook (Meta) in 2013, it became one of the most popular JS frameworks for website development<sup>[[3]](https://reactjs.org)</sup>. 
 
 Next.js is an open-source framework built with Node.js that adds functionalities such as server-side rendering, static websites, smart bundling, etc., for React-based websites<sup>[[4]](https://nextjs.org)</sup>.
 
+Although frameworks like Next.js are just tools to assist the developers, they're useful to the client due to its extensibility. Because they've become fundamental in the software development community, many programmers are familiar with the frameworks and can easily develope upon it. On the other hand, it's possible to not use frameworks and create a software with the same functionalities, however, this is not ideal because of lack of readability and extensibility.
 
-#### CSS and Sass
-
-Cascading Style Sheets (CSS) is a stylesheet language that determines the styles – position, size, color, etc. – of the content represented by HTML or XML<sup>[[5]](https://developer.mozilla.org/en-US/docs/Web/CSS)</sup>. 
-
-Syntactically Awesome Style Sheets (Sass) is an extension of CSS that allows developers to use features such as variables, imports, etc.<sup>[[6]](https://www.w3schools.com/sass/sass_intro.php)</sup>.
+Next.js, in comparision to its competitors such as Angular and Vue, excels due to faster page load and more efficient data caching<sup>[[5]](https://enlear.academy/next-js-vs-angular-whos-the-ultimate-winner-of-the-frontend-development-a3ee82a6da41)</sup>. Because my solution relies heavily on data transmition, an overall faster performing website would improve user experience and reducing unnecessary traffic.
 
 
 #### Global Giving API
 
-The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide<sup>[[8]](https://www.globalgiving.org/api/)</sup>.
+The Global Giving organization developed an Application Programming Interface (API) – software for applications to communicate with each other – that shares information about charity movements worldwide<sup>[[6]](https://www.globalgiving.org/api/)</sup>.
 
 
 #### SQLite
-MongoDB is a document database for non-relational database stored in JSON (Javascript Object Notation) format<sup>[[9]](https://www.interviewbit.com/blog/mongodb-vs-mysql/)</sup>. As my solution does not require relational database and is build using Javascript, it's more beneficial to use mongoDB for it's speed, scalability, and formatting instead of SQL database programs.
+To operate the database, I choose to use SQLite. It's a declarative query language that is common for relational databases. Also, when identifying the issue and planning out the ER (Entity Relation) diagram and table, I noticed that classes have relation to each other. In this instance, a user has many search history items and favorites. Compared to its competitors such as MySQL, SQLite is severless, meaning that it stores the database locally on only the host machine, resulting in higher security against data leaks<sup>[[7]](https://www.thinkautomation.com/our-two-cents/sqlite-pros-and-cons-a/)</sup>.
 
 
 #### Vercel hosting service
-Next.js defaults to Vercel hosting service, which handles the distribution of service worldwide. There are different hosting option but because the website renders mostly on client side, there's no need for extra bandwidth or other resources<sup>[[10]](https://vercel.com/pricing)</sup>.
+Next.js defaults to Vercel hosting service, which handles the distribution of service worldwide. There are different hosting option but because the website renders mostly on client side, there's no need for extra bandwidth or other resources<sup>[[8]](https://vercel.com/pricing)</sup>.
 
 
 ### Success Criteria
 
-1. Login system using email and password for securing user credentials.
-2. Users can see a page heading containing the application name.
-3. Search bar provides quick and easy access to a collection of charity organizations and their updates through Global Giving API.
-4. Users can click the 'Search' button (or Enter) to display information cards for the matching organizations in a search results area.
-5. Users can see organization information cards in the search results area containing name, title, and a short desciption:
-6. The organization’s information card hyperlink opens a new tab on that organization’s home page.
-7. The website allow users to quickly navigate to charities that are similar to those they have searched.
-8. Users can see a page footer with links to your social media accounts, including social media icons (like the Instagram icon).
+1. Login system using email and password to save user preferences and history.
+2. Search bar provides quick and easy access to a collection of charity projects through Global Giving API.
+3. Users can see projects information cards in the search results area containing: title, short summary, and image
+4. The organization’s information card hyperlink opens a new tab on that organization’s home page.
+5. Function allowing users to continue their latest previous search.
+6. Function allowing users to save search results and access them from the main page.
 
 
 ## Criteria B: Design
@@ -77,16 +71,18 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### Solution Sketch
 
-![solution_sketch](https://user-images.githubusercontent.com/89367058/199765500-82652c68-8cf7-453b-a998-080384e1a398.png)
+![solution_sketch](https://user-images.githubusercontent.com/89367058/205923817-f3414fb8-7560-4675-bc45-6c0e8293effa.png)
 
 ***Figure 1:*** Sketch of purposed solution's wireframe
 
-***Fig.1*** is a wireframe showing a total of 4 screens - ```HomeScreen```, ```SearchResults```, ```LoginScreen```, and ```SignupScreen``` - connected via buttons.
+***Fig.1*** is a wireframe showing a total of 5 screens - ```HomeScreen```, ```SearchResults```, ```FavoritesScreen```, ```LoginScreen```, and ```SignupScreen``` - connected via buttons.
 - The ```LoginScreen``` and ```RegisterScreen``` are connected via the "Create one right now!"/"Login right now!" buttons.
-- From the ```SingupScreen```, signing up will automatically send the user to the ```HomeScreen```.
+- From the ```SingupScreen```, signing up will send the user to the ```LoginScreen```.
 - From the ```LoginScreen```, logging in will automatically send the user to the ```HomeScreen```.
-- From the ```HomeScreen```, the user can enter a search term in the ***searchbar*** and click ***Search*** or ***Enter key*** to go to the ```ResultsScreen``` displaying the search results, or chose to login/logout by moving to the ```LoginScreen``` via ***User icon*** on the top right corner.
-- From the ```ResultsScreen```, return to the ```HomeScreen``` via "CharityFinder"
+- From the ```HomeScreen```, the user can enter a search term in the ***searchbar*** and click ***Search*** or ***Enter key*** to go to the ```ResultsScreen``` displaying the search results.
+- From the ```HomeScreen```, the user can select to continue their previous search via ```Last search``` or view their favorites projects collection via ```Favorites```.
+- From the ```HomeScreen```, the user can login/logout by moving to the ```LoginScreen``` via ***Login/Logout*** on the top right corner.
+- From the ```ResultsScreen``` or the ```FavoritesScreen```, return to the ```HomeScreen``` via a back-arrow icon.
 
 
 ### System Diagram
@@ -111,7 +107,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### Database ER Diagram
 
-![DatabaseER](https://user-images.githubusercontent.com/89367058/203893228-0049cb27-cd7c-419d-9d3e-5c5d4d47b40c.png)
+![DatabaseER](https://user-images.githubusercontent.com/89367058/205541863-d2811fb8-1655-4396-a57b-19265af01b7a.png)
 
 ***Figure 3:*** ER diagram for the database. Visualized version of the database.
 
@@ -123,6 +119,9 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 1  | "Nagisa" | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd |
 | 2  | "David"  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 |
 
+***Figure 4:*** User table with some examples.
+
+
 **Table: SearchHistory**
 | ID | searchKey    | ownerID |
 |----|--------------|---------|
@@ -133,8 +132,16 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 5  | "Bangladesh" | 2       |
 | 6  | "Vietnam"    | 2       |
 
+***Figure 5:*** SearchHistory table with some examples.
 
-***Figure 4:*** User table with some examples.
+
+**Table: Favorite**
+| ID | charityId | charityTitle                                         | charitySummary                                                                                                                    | charityImageUrl                                    | charityUrl                       | ownerId |
+|----|-----------|------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------|----------------------------------|---------|
+| 1  | 13517     | 'Orphans into loving foster families in China'       | 'In China, there are an estimated 90,000+ children growing up in government orphanages, the majority of whom have disabilities.   | 'https://www.globalgiving.org/pfil/13517/pict.jpg' | 'http://www.careforchildren.com' | 1       |
+| 2  | 57172     | 'Pakistan Humanitarian Crises: Flood Emergency 2022' | 'Over 35 Million humans are affected by Flooding across Pakistan since June 2022. Severe Health risks along with food insecurity. | 'https://www.globalgiving.org/pfil/57172/pict.jpg' | 'http://www.facespakistan.org'   | 1       |
+
+***Figure 6:*** Favorite table with some examples.
 
 
 ### Record of Task
@@ -162,14 +169,14 @@ The web application uses Javascript with frameworks such as React and Next.js as
 ## Criteria C: Development
 
 ### Tools
-1. React framework
-2. Next.js library
-3. CSS, Sass stylesheet
-4. Tailwind CSS library
-5. Framer motion library
-6. Database
-7. MongoDB Atlas
-8. Global Giving API
+1. React framework + Next.js library
+2. CSS, Sass stylesheet + Tailwind CSS library
+3. SQLite database management
+4. Global Giving API
+5. Authorization cookie
+6. JSON Web Tokens
+7. bcrypt hash
+8. API
 9. Guard clause
 
 
@@ -192,8 +199,7 @@ As the client requested, the website must include a storage system that stores d
 2. “Usage Statistics of JavaScript as Client-side Programming Language on Websites, August 2022.” W3Techs, 2022, https://w3techs.com/technologies/details/cp-javascript/. Accessed 22 August 2022.
 3. “React – A JavaScript library for building user interfaces.” React, https://reactjs.org. Accessed 23 August 2022.
 4. “Next.js by Vercel - The React Framework.” Next.js, https://nextjs.org. Accessed 23 August 2022.
-5. “CSS: Cascading Style Sheets | MDN.” MDN Web Docs, 16 August 2022, https://developer.mozilla.org/en-US/docs/Web/CSS. Accessed 23 August 2022.
-6. “Sass Introduction.” W3Schools, https://www.w3schools.com/sass/sass_intro.php. Accessed 23 August 2022.
-8. “GlobalGiving API Documentation.” GlobalGiving, https://www.globalgiving.org/api/. Accessed 4 November 2022.
-9. MongoDB vs mysql: Know the difference. InterviewBit. (2022, August 16). Retrieved November 4, 2022, from https://www.interviewbit.com/blog/mongodb-vs-mysql/.
-10. “Pricing – Vercel.” Vercel, https://vercel.com/pricing. Accessed 4 November 2022.
+5. Kapoor, Ajay. “Next js vs. Angular: Who's the Ultimate Winner of the Frontend Development?” Enlear Academy, https://enlear.academy/next-js-vs-angular-whos-the-ultimate-winner-of-the-frontend-development-a3ee82a6da41. Accessed 2 December 2022.
+6. “GlobalGiving API Documentation.” GlobalGiving, https://www.globalgiving.org/api/. Accessed 4 November 2022.
+7. “SQLite pros and cons: a short overview.” ThinkAutomation, https://www.thinkautomation.com/our-two-cents/sqlite-pros-and-cons-a/. Accessed 6 December 2022.
+8. “Pricing – Vercel.” Vercel, https://vercel.com/pricing. Accessed 4 November 2022.
