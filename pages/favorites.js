@@ -2,13 +2,13 @@ import styles from "../styles/search.module.scss"
 import Head from "next/head"
 import Link from "next/link"
 import Image from "next/image"
-import Router from "next/router"
 import { Tooltip, Button } from "@nextui-org/react"
 import { HeartIcon } from "../components/HeartIcon"
-import { Left, Right } from "../components/ArrowIcon"
 import Header from "../components/Header"
 import isLoggedIn from "./api/isLoggedIn"
 import { myGet } from "./api/myGet"
+import jsPDF from "jspdf"
+import html2canvas from "html2canvas"
 
 export async function getServerSideProps(ctx) {
     const auth = await isLoggedIn(ctx)
@@ -36,6 +36,15 @@ export default function search({ allFavorite }) {
         })
     }
 
+    async function handleScreenShot() {
+        const doc = new jsPDF()
+        const element = document.getElementById("favorites")
+        await html2canvas(element).then((canvas) => {
+            doc.addImage(canvas.toDataURL("image/png"), "PNG", 10, 10, 190, 150)
+        })
+        doc.save("favorites.pdf")
+    }
+
     return (
         <div>
             <Head>
@@ -43,7 +52,7 @@ export default function search({ allFavorite }) {
             </Head>
             <Header isSearchBar={true} isLoggedIn={isLoggedIn} />
             <div className={styles.searchKey}></div>
-            <div className={styles.listContainer}>
+            <div id="favorites" className={styles.listContainer}>
                 <ul>
                     {allFavorite !== "empty" ? (
                         allFavorite.map((res) => (
@@ -96,6 +105,9 @@ export default function search({ allFavorite }) {
                     )}
                 </ul>
             </div>
+            <button className={styles.button} onClick={handleScreenShot}>
+                Save to PDF
+            </button>
         </div>
     )
 }

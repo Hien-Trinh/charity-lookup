@@ -71,3 +71,28 @@
         }
     }
 }
+
+.button {
+    margin-left: 7.5rem;
+    margin-top: 1.5rem;
+    width: 8rem;
+    height: 2.75rem;
+    color: #252836;
+    border-color: transparent;
+    border-width: 1px;
+    border-radius: 9999px;
+    background: rgb(156, 163, 175, 1);
+    font-size: large;
+    font-weight: 700;
+    --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+        border-color: white;
+        background: #252836;
+    }
+}
