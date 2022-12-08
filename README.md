@@ -115,7 +115,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ![DatabaseER](https://user-images.githubusercontent.com/89367058/205541863-d2811fb8-1655-4396-a57b-19265af01b7a.png)
 
-***Figure 3:*** ER diagram for the database. Visualized version of the database.
+***Figure 6:*** ER diagram for the database. Visualized version of the database.
 
 ### Database Table (example)
 
@@ -125,7 +125,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 1  | "Nagisa" | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd |
 | 2  | "David"  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 |
 
-***Figure 4:*** User table with some examples.
+***Figure 7:*** User table with some examples.
 
 
 **Table: SearchHistory**
@@ -138,7 +138,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 5  | "Bangladesh" | 2       |
 | 6  | "Vietnam"    | 2       |
 
-***Figure 5:*** SearchHistory table with some examples.
+***Figure 8:*** SearchHistory table with some examples.
 
 
 **Table: Favorite**
@@ -147,7 +147,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 1  | 13517     | 'Orphans into loving foster families in China'       | 'In China, there are an estimated 90,000+ children growing up in government orphanages, the majority of whom have disabilities.   | 'https://www.globalgiving.org/pfil/13517/pict.jpg' | 'http://www.careforchildren.com' | 1       |
 | 2  | 57172     | 'Pakistan Humanitarian Crises: Flood Emergency 2022' | 'Over 35 Million humans are affected by Flooding across Pakistan since June 2022. Severe Health risks along with food insecurity. | 'https://www.globalgiving.org/pfil/57172/pict.jpg' | 'http://www.facespakistan.org'   | 1       |
 
-***Figure 6:*** Favorite table with some examples.
+***Figure 9:*** Favorite table with some examples.
 
 
 ### Record of Task
@@ -206,6 +206,70 @@ The web application uses Javascript with frameworks such as React and Next.js as
 ### Creating the UI
 
 The UI (user interface) plays an important role in achieving the success criteria as it provides visuals and makes the interaction with the website’s function much more abstract, simpler. I chose the React framework because it supports OOP (object-oriented programming), which is highly compatible with the website. In addition, React integrates HTML into Javascript, which makes it easier to create dynamic webpages – website displays differently based on different conditions.
+
+``` js
+
+export default function Card({ login }) {
+
+    ...
+    
+    return (
+        <div className={styles.container}>
+            <div className={styles.title}>{login ? "Login" : "Sign Up"}</div>
+            {message ? <div className={styles.message}>{message}</div> : null}
+            <input
+                type="text"
+                placeholder="email"
+                className={styles.inputField}
+                ref={emailRef}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleClick()
+                    }
+                }}
+            />
+            {login ? null : (
+                <input
+                    type="text"
+                    placeholder="name"
+                    className={styles.inputField}
+                    ref={nameRef}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            handleClick()
+                        }
+                    }}
+                />
+            )}
+            <input
+                type="password"
+                placeholder="password"
+                className={styles.inputField}
+                ref={passwordRef}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleClick()
+                    }
+                }}
+            />
+            <button className={styles.button} onClick={handleClick}>
+                {login ? "Login" : "Sign Up"}
+            </button>
+            {login ? (
+                <Link href="./signup">
+                    <div className={styles.link}>Create a new account.</div>
+                </Link>
+            ) : (
+                <Link href="./login">
+                    <div className={styles.link}>Already have an account?</div>
+                </Link>
+            )}
+        </div>
+    )
+}
+
+```
+***Figure 10:*** Code segment of the ```Card``` component in the ```LoginScreen``` and ```SignupScreen```.
 
 
 ### Creating the database
