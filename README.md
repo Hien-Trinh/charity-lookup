@@ -161,6 +161,23 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 11       | Planning: meet with client             | go through minimal viable product (search function) and address feedback | 1h15      | Oct. 12              | A        |
 | 12       | Design: flow diagram – login function  | added flow diagram for login function                                    | 20min     | Oct. 20              | B        |
 | 13       | Design: flow diagram – search function | added flow diagram for search function                                   | 20min     | Oct. 20              | B        |
+| 14       | Development: login/signup screens      | designed and stylized the login and signup screens                       | 1h30      | Nov. 1               | C        |
+| 15       | Development: create databases          | created Person, SearchHistory, and Favorite databases                    | 30min     | Nov. 3               | C        |
+| 16       | Development: database fetching APIs    | built APIs to fetch information from the database                        | 2h        | Nov. 3               | C        |
+| 17       | Development: database inputing APIs    | built APIs to input information into the database                        | 1h30      | Nov. 8               | C        |
+| 18       | Development: password hash function    | created function for hashing password in signup                          | 20min     | Nov. 9               | C        |
+| 19       | Development: password verify function  | created function for verifying password in login                         | 20min     | Nov. 9               | C        |
+| 20       | Development: signup API                | built API for signup function                                            | 30min     | Nov. 13              | C        |
+| 21       | Development: login API                 | built API for login function with tools such as cookies and jwt          | 1h30      | Nov. 13              | C        |
+| 22       | Development: authentication API        | built API for authenticating the user's login status to secure data      | 1h        | Nov. 15              | C        |
+| 23       | Development: routing pages function    | created callback function that routes the user to desired pages          | 30min     | Nov. 15              | C        |
+| 24       | Development: debugging authentication  | test login/signup system and data flow for unexpected behaviors          | 3h        | Nov. 18              | C        |
+| 25       | Planning: meet with client             | review success criteria, show functionality of the login/signup system   | 1h        | Nov. 20              | C        |
+| 26       | Design: solution sketch update         | detailed wireframe of the website                                        | 30min     | Nov. 20              | B        |
+| 27       | Development: Last search function      | created function that continues the last recorded search in the history  | 30min     | Nov. 26              | C        |
+| 28       | Development: Favorite function         | created function that adds charity projects into the database            | 45min     | Nov. 30              | C        |
+| 29       | Development: Favorite screen           | made a screen listing the user's saved charity projects                  | 1h15      | Nov. 30              | C        |
+| 30       | Development: Export to PDF function    | created function that exports the user's favorite collection as PDF      | 2h        | Dec. 4               | C        |
 
 
 ### Test plan
