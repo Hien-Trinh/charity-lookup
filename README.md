@@ -87,7 +87,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### System Diagram
 
-![SystemDiagram](https://user-images.githubusercontent.com/89367058/199881406-62dc1548-8be1-4e28-878d-ee77a29f4912.png)
+![SystemDiagram](https://user-images.githubusercontent.com/89367058/206381576-ef11ab92-5165-4c53-afcc-bad3b88f8be4.png)
 
 ***Figure 2:*** System Diagram for developer. Shows the input, output, internet, and the process in between.
 
