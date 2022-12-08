@@ -104,6 +104,12 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ***Figure 4:*** Flow diagram of the Search function
 
+### <br/>
+
+![FlowDiagram_favorites](https://user-images.githubusercontent.com/89367058/206427106-2b959621-190d-4348-95da-40e85c4beece.png)
+
+***Figure 5:*** Flow diagram of the Favorites page
+
 
 ### Database ER Diagram
 
