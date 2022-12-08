@@ -205,9 +205,10 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### Creating the UI
 
-The UI (user interface) plays an important role in achieving the success criteria as it provides visuals and makes the interaction with the website’s function much more abstract, simpler. I chose the React framework because it supports OOP (object-oriented programming), which is highly compatible with the website. In addition, React integrates HTML into Javascript, which makes it easier to create dynamic webpages – website displays differently based on different conditions.
+The UI (user interface) plays an important role in achieving the success criteria as it provides visuals and makes the interaction with the website’s function much more abstract, simpler. I chose the React framework because it integrates HTML into Javascript, which makes it easier to create dynamic webpages – website displays differently based on different conditions.
 
 ``` js
+// ./components/Card.js
 
 export default function Card({ login }) {
 
@@ -270,6 +271,8 @@ export default function Card({ login }) {
 
 ```
 ***Figure 10:*** Code segment of the ```Card``` component in the ```LoginScreen``` and ```SignupScreen```.
+
+In ***figure 10***, ```Card()``` is a rendering function that returns the HTML for the ```Card``` component. Because the HTML and CSS of the ```LoginScreen``` and the ```SignupScreen``` are similar, I chose to create a dynamic component that changes in response to the boolean ```login``` prop passed into the function, which indicates whether the ```Card``` should be for login or for signup. For instance, if ```login``` is true, the title will be "Login" and the input field for name will disappear. On the other hand, if ```login``` is false, the title is "Sign Up" and the name field appears.
 
 
 ### Creating the database
