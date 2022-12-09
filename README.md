@@ -192,6 +192,9 @@ The web application uses Javascript with frameworks such as React and Next.js as
 ## Criteria C: Development
 
 ### Tools
+
+**List of techniques**
+
 1. React framework + Next.js library
 2. CSS, Sass stylesheet + Tailwind CSS library
 3. SQLite database management
@@ -201,6 +204,17 @@ The web application uses Javascript with frameworks such as React and Next.js as
 7. bcrypt hash
 8. API
 9. Guard clause
+
+
+**References for the sources
+
+1. Stackoverflow – various bug fixes
+2. Github – various bug fixes
+3. [Next.js Tutorial - Part 6 | Authentication for API Routes using JWT and bcrypt](https://www.youtube.com/watch?v=j4Tob0KDbuQ&ab_channel=BrunoAntunes)
+4. [Next.js Tutorial - Part 7 | Consume Authenticated APIs with cookies](https://www.youtube.com/watch?v=sxwCxmKhhas&t=874s&ab_channel=BrunoAntunes)
+5. [Next.js Documentation](https://nextjs.org/)
+6. [Global Giving API Documentation](https://www.globalgiving.org/api/)
+7. [jsPDF Documentation](https://github.com/parallax/jsPDF)
 
 
 ### Creating the UI
@@ -307,17 +321,180 @@ export default function Signup() {
 
 ```
 
-***Figure 12:*** ```Sogin()``` renders the ```SignupScreen```.
-
-
-
-
-
+***Figure 12:*** ```Signup()``` renders the ```SignupScreen```.
 
 
 ### Creating the database
 
-As the client requested, the website must save the users' search history and favorite collection. Therefore, I include a storage system that stores data on the server database. There is one table for the users' login information, one for the search history, and one for the favorite collection. I use SQLite.
+The client requested that the website save the users' search history and favorite collections. Therefore, I include a storage system that stores data on the server database. There is one table for the users' login information, one for the search history, and one for the favorite collection.
+
+
+``` sql
+-- ./migrations/001-initial.sql
+
+-- Up
+CREATE TABLE Person (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE SearchHistory (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    searchKey TEXT NOT NULL,
+    ownerId INTEGER REFERENCES Person(id)
+);
+
+CREATE TABLE Favorite (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    charityId INTEGER UNIQUE NOT NULL,
+    charityTitle TEXT NOT NULL,
+    charitySummary TEXT NOT NULL,
+    charityImage TEXT NOT NULL,
+    charityUrl TEXT NOT NULL,
+    ownerId INTEGER REFERENCES Person(id)
+);
+
+-- Down
+DROP TABLE Person;
+DROP TABLE SearchHistory;
+DROP TABLE Favorite;
+```
+
+***Figure 13:*** SQLite to create and delete data tables for ```Person```, ```SearchHistory```, and ```Favorite```.
+
+
+The SQLite commands in ***figure 13*** are for creating empty tables with assigned columns and dropping (deleting) their previous iteration.
+
+
+``` js
+// ./database-initiate.js
+
+// import sqlite and sqlite3
+const sqlite = require("sqlite")
+const sqlite3 = require("sqlite3")
+
+// open the database
+async function openDb() {
+    return sqlite.open({
+        filename: "../database.sqlite",
+        driver: sqlite3.Database,
+    })
+}
+
+// initiate the database
+async function init() {
+    const db = await openDb()
+    await db.migrate({ force: "last", migrationsPath: "../migrations" })
+    // force: "last" will force the database to migrate to the latest version
+    // migrationsPath: "../migrations" will migrate the database to the latest version
+
+    const Person = await db.all("SELECT * FROM Person")
+    console.log(JSON.stringify(Person, null, 2))
+
+    const SearchHistory = await db.all("SELECT * FROM SearchHistory")
+    console.log(JSON.stringify(SearchHistory, null, 2))
+
+    const Favorite = await db.all("SELECT * FROM Favorite")
+    console.log(JSON.stringify(Favorite, null, 2))
+}
+
+// call the function
+init()
+
+```
+
+***Figure 14:*** JS code runs the SQLite commands in ***figure 13***.
+
+I created ```database-initiate.js``` and ```001-initial.sql``` specifically for development purposes to test the database. In the production build, I would change the ```DROP TABLE``` command to something along the lines of ```ALTER TABLE``` to migrate the data rather than deleting them. This is because other developers or I may wish to migrate the database with all the data due to version updates or changes to existing tables in the future.
+
+
+### Login
+
+Although it’s possible in NEXT.js to run both server-side and static site generation on the same page, I chose to separate the server-side function into an API (Application Programming Interface) – a software used for communication between programs – to improve code readability and accessibility.
+
+
+``` js
+// ./pages/api/login.js
+
+// import libraries
+import { compare } from "bcrypt"        // for verifying hashed password
+import { sign } from "jsonwebtoken"     // for JWT
+import cookie from "cookie"             // for cookie
+
+// import sqlite and sqlite3
+const sqlite = require("sqlite")
+const sqlite3 = require("sqlite3")
+
+// open the database
+async function openDb() {
+    return sqlite.open({
+        filename: "../database.sqlite",
+        driver: sqlite3.Database,
+    })
+}
+
+// login API function
+export default async function login(req, res) {
+    const db = await openDb()
+
+    // check if the request method is POST
+    if (req.method === "POST") {
+        // check if the email and password are provided
+        const person = await db.get("SELECT * FROM Person WHERE email = ?", [
+            req.body.email,
+        ])
+
+        if (!person) {
+            res.status(401).json({ message: "Wrong email or password", success: false })
+            return
+        }
+
+        // verify the password
+        compare(
+            req.body.password,
+            person.password,
+            async function (err, result) {
+                if (!err && result) {
+                    // create a JWT
+                    const claims = {
+                        sub: person.id,
+                        myPersonEmail: person.email,
+                    }
+
+                    // sign the JWT, set to expire in 1 hour
+                    const jwt = sign(claims, "" + process.env.auth_secret, {
+                        expiresIn: "1h",
+                    })
+
+                    // set the cookie with the JWT in the response header
+                    res.setHeader(
+                        "Set-Cookie",
+                        cookie.serialize("auth", jwt, {
+                            httpOnly: true,
+                            secure: process.env.NODE_ENV !== "development",
+                            sameSite: "strict",
+                            maxAge: 3600,
+                            path: "/",
+                        })
+                    )
+                    res.json({ message: "Login success", success: true })
+                } else {
+                    res.json({ message: "Login failed", success: false })
+                }
+            }
+        )
+    } else {
+        res.status(405).json({ message: "We only support POST", success: false })
+    }
+}
+
+```
+
+***Figure 15:*** ```login()``` validates the user's login information by cross-checking with the database and assigning a JWT as a cookie upon success.
+
+
 
 
 
