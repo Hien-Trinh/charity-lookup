@@ -60,6 +60,7 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 4. The organization’s information card hyperlink opens a new tab on that organization’s home page.
 5. Function allowing users to continue their latest previous search.
 6. Function allowing users to save search results and access them from the main page.
+7. Users can save their "Favorites" collection to PDF
 
 
 ## Criteria B: Design
@@ -87,7 +88,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### System Diagram
 
-![SystemDiagram](https://user-images.githubusercontent.com/89367058/199881406-62dc1548-8be1-4e28-878d-ee77a29f4912.png)
+![SystemDiagram](https://user-images.githubusercontent.com/89367058/206381576-ef11ab92-5165-4c53-afcc-bad3b88f8be4.png)
 
 ***Figure 2:*** System Diagram for developer. Shows the input, output, internet, and the process in between.
 
@@ -104,12 +105,18 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ***Figure 4:*** Flow diagram of the Search function
 
+### <br/>
+
+![FlowDiagram_favorites](https://user-images.githubusercontent.com/89367058/206427106-2b959621-190d-4348-95da-40e85c4beece.png)
+
+***Figure 5:*** Flow diagram of the Favorites page
+
 
 ### Database ER Diagram
 
 ![DatabaseER](https://user-images.githubusercontent.com/89367058/205541863-d2811fb8-1655-4396-a57b-19265af01b7a.png)
 
-***Figure 3:*** ER diagram for the database. Visualized version of the database.
+***Figure 6:*** ER diagram for the database. Visualized version of the database.
 
 ### Database Table (example)
 
@@ -119,7 +126,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 1  | "Nagisa" | 2023.nagisa.sato@uwcisak.jp     | f5eea0a6fac31da36bd47ddb29987f8d735a27f430b20ff099ba54b4018caafd |
 | 2  | "David"  | 2023.hien.minh.trinh@uwcisak.jp | 031117675a69578e401ce571634622476bf66cd5ea1faf9588f502eeeff90431 |
 
-***Figure 4:*** User table with some examples.
+***Figure 7:*** User table with some examples.
 
 
 **Table: SearchHistory**
@@ -132,7 +139,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 5  | "Bangladesh" | 2       |
 | 6  | "Vietnam"    | 2       |
 
-***Figure 5:*** SearchHistory table with some examples.
+***Figure 8:*** SearchHistory table with some examples.
 
 
 **Table: Favorite**
@@ -141,7 +148,7 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 1  | 13517     | 'Orphans into loving foster families in China'       | 'In China, there are an estimated 90,000+ children growing up in government orphanages, the majority of whom have disabilities.   | 'https://www.globalgiving.org/pfil/13517/pict.jpg' | 'http://www.careforchildren.com' | 1       |
 | 2  | 57172     | 'Pakistan Humanitarian Crises: Flood Emergency 2022' | 'Over 35 Million humans are affected by Flooding across Pakistan since June 2022. Severe Health risks along with food insecurity. | 'https://www.globalgiving.org/pfil/57172/pict.jpg' | 'http://www.facespakistan.org'   | 1       |
 
-***Figure 6:*** Favorite table with some examples.
+***Figure 9:*** Favorite table with some examples.
 
 
 ### Record of Task
@@ -161,6 +168,23 @@ The web application uses Javascript with frameworks such as React and Next.js as
 | 11       | Planning: meet with client             | go through minimal viable product (search function) and address feedback | 1h15      | Oct. 12              | A        |
 | 12       | Design: flow diagram – login function  | added flow diagram for login function                                    | 20min     | Oct. 20              | B        |
 | 13       | Design: flow diagram – search function | added flow diagram for search function                                   | 20min     | Oct. 20              | B        |
+| 14       | Development: login/signup screens      | designed and stylized the login and signup screens                       | 1h30      | Nov. 1               | C        |
+| 15       | Development: create databases          | created Person, SearchHistory, and Favorite databases                    | 30min     | Nov. 3               | C        |
+| 16       | Development: database fetching APIs    | built APIs to fetch information from the database                        | 2h        | Nov. 3               | C        |
+| 17       | Development: database inputing APIs    | built APIs to input information into the database                        | 1h30      | Nov. 8               | C        |
+| 18       | Development: password hash function    | created function for hashing password in signup                          | 20min     | Nov. 9               | C        |
+| 19       | Development: password verify function  | created function for verifying password in login                         | 20min     | Nov. 9               | C        |
+| 20       | Development: signup API                | built API for signup function                                            | 30min     | Nov. 13              | C        |
+| 21       | Development: login API                 | built API for login function with tools such as cookies and jwt          | 1h30      | Nov. 13              | C        |
+| 22       | Development: authentication API        | built API for authenticating the user's login status to secure data      | 1h        | Nov. 15              | C        |
+| 23       | Development: routing pages function    | created callback function that routes the user to desired pages          | 30min     | Nov. 15              | C        |
+| 24       | Development: debugging authentication  | test login/signup system and data flow for unexpected behaviors          | 3h        | Nov. 18              | C        |
+| 25       | Planning: meet with client             | review success criteria, show functionality of the login/signup system   | 1h        | Nov. 20              | C        |
+| 26       | Design: solution sketch update         | detailed wireframe of the website                                        | 30min     | Nov. 20              | B        |
+| 27       | Development: Last search function      | created function that continues the last recorded search in the history  | 30min     | Nov. 26              | C        |
+| 28       | Development: Favorite function         | created function that adds charity projects into the database            | 45min     | Nov. 30              | C        |
+| 29       | Development: Favorite screen           | made a screen listing the user's saved charity projects                  | 1h15      | Nov. 30              | C        |
+| 30       | Development: Export to PDF function    | created function that exports the user's favorite collection as PDF      | 2h        | Dec. 4               | C        |
 
 
 ### Test plan
@@ -169,6 +193,9 @@ The web application uses Javascript with frameworks such as React and Next.js as
 ## Criteria C: Development
 
 ### Tools
+
+**List of techniques**
+
 1. React framework + Next.js library
 2. CSS, Sass stylesheet + Tailwind CSS library
 3. SQLite database management
@@ -180,17 +207,535 @@ The web application uses Javascript with frameworks such as React and Next.js as
 9. Guard clause
 
 
+**References for the sources
+
+1. Stackoverflow – various bug fixes
+2. Github – various bug fixes
+3. [Next.js Tutorial - Part 6 | Authentication for API Routes using JWT and bcrypt](https://www.youtube.com/watch?v=j4Tob0KDbuQ&ab_channel=BrunoAntunes)
+4. [Next.js Tutorial - Part 7 | Consume Authenticated APIs with cookies](https://www.youtube.com/watch?v=sxwCxmKhhas&t=874s&ab_channel=BrunoAntunes)
+5. [Next.js Documentation](https://nextjs.org/)
+6. [Global Giving API Documentation](https://www.globalgiving.org/api/)
+7. [jsPDF Documentation](https://github.com/parallax/jsPDF)
+
+
 ### Creating the UI
 
-The UI (user interface) plays an important role in achieving the success criteria as it provides visuals and makes the interaction with the website’s function much more abstract, simpler. I chose the React framework because it supports OOP (object-oriented programming), which is highly compatible with the website. In addition, React integrates HTML into Javascript, which makes it easier to create dynamic webpages – website displays differently based on different conditions.
+The UI (user interface) plays an important role in achieving the success criteria as it provides visuals and makes the interaction with the website’s function much more abstract and straightforward. I chose the React framework because it integrates HTML into Javascript, which makes it easier to create dynamic webpages – website displays differently based on different conditions.
+
+``` js
+// ./components/Card.js
+
+export default function Card({ login }) {
+
+    ...
+    
+    return (
+        <div className={styles.container}>
+            <div className={styles.title}>{login ? "Login" : "Sign Up"}</div>
+            {message ? <div className={styles.message}>{message}</div> : null}
+            <input
+                type="text"
+                placeholder="email"
+                className={styles.inputField}
+                ref={emailRef}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleClick()
+                    }
+                }}
+            />
+            {login ? null : (
+                <input
+                    type="text"
+                    placeholder="name"
+                    className={styles.inputField}
+                    ref={nameRef}
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            handleClick()
+                        }
+                    }}
+                />
+            )}
+            <input
+                type="password"
+                placeholder="password"
+                className={styles.inputField}
+                ref={passwordRef}
+                onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                        handleClick()
+                    }
+                }}
+            />
+            <button className={styles.button} onClick={handleClick}>
+                {login ? "Login" : "Sign Up"}
+            </button>
+            {login ? (
+                <Link href="./signup">
+                    <div className={styles.link}>Create a new account.</div>
+                </Link>
+            ) : (
+                <Link href="./login">
+                    <div className={styles.link}>Already have an account?</div>
+                </Link>
+            )}
+        </div>
+    )
+}
+
+```
+
+***Figure 10:*** Code segment of the ```Card``` component in the ```LoginScreen``` and ```SignupScreen```.
+
+
+In ***figure 10***, ```Card()``` is a rendering function that returns the HTML for the ```Card``` component. Because the HTML and CSS of the ```LoginScreen``` and the ```SignupScreen``` are similar, I chose to create a dynamic component that changes in response to the boolean ```login``` prop passed into the function, which indicates whether the ```Card``` should be for login or signup. For instance, if ```login``` is true, the title will be "Login" and the input field for the name will disappear. On the other hand, if ```login``` is false, the title is "Sign Up" and the name field appears. The disadvantage of using a single dynamic component is the complexity of the code. However, the advantages are:
+- Changes in formatting and styles (HTML and CSS) apply to both, saving the developer’s time from repeating the changes multiple times.
+- Improve code readability and accessibility. Referring to ***figure 11*** and ***figure 12*** below, the ```Card``` component is imported and called in ```login()``` and ```signup()```.
+
+``` js
+// ./pages/login.js
+
+import Card from '../components/Card';
+
+export default function Login() {
+    return (
+        <Card login={true}></Card>
+    )
+}
+
+```
+
+***Figure 11:*** ```Login()``` renders the ```LoginScreen```.
+
+
+```js
+// ./pages/signup.js
+
+import Card from "../components/Card"
+
+export default function Signup() {
+    return (
+        <Card login={false}></Card>
+    )
+}
+
+```
+
+***Figure 12:*** ```Signup()``` renders the ```SignupScreen```.
 
 
 ### Creating the database
 
-As the client requested, the website must include a storage system that stores data on the server database. There is one table to classify the users. I used mongoDB atlast because it stores data on the server instead of locally.
+The client requested that the website save the users' search history and favorite collections. Therefore, I include a storage system that stores data on the server database. There is one table for the users' login information, one for the search history, and one for the favorite collection.
+
+
+``` sql
+-- ./migrations/001-initial.sql
+
+-- Up
+CREATE TABLE Person (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT NOT NULL,
+    email TEXT NOT NULL,
+    password TEXT NOT NULL
+);
+
+CREATE TABLE SearchHistory (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    searchKey TEXT NOT NULL,
+    ownerId INTEGER REFERENCES Person(id)
+);
+
+CREATE TABLE Favorite (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    charityId INTEGER UNIQUE NOT NULL,
+    charityTitle TEXT NOT NULL,
+    charitySummary TEXT NOT NULL,
+    charityImage TEXT NOT NULL,
+    charityUrl TEXT NOT NULL,
+    ownerId INTEGER REFERENCES Person(id)
+);
+
+-- Down
+DROP TABLE Person;
+DROP TABLE SearchHistory;
+DROP TABLE Favorite;
+```
+
+***Figure 13:*** SQLite to create and delete data tables for ```Person```, ```SearchHistory```, and ```Favorite```.
+
+
+The SQLite commands in ***figure 13*** are for creating empty tables with assigned columns and dropping (deleting) their previous iteration.
+
+
+``` js
+// ./database-initiate.js
+
+// import sqlite and sqlite3
+const sqlite = require("sqlite")
+const sqlite3 = require("sqlite3")
+
+// open the database
+async function openDb() {
+    return sqlite.open({
+        filename: "../database.sqlite",
+        driver: sqlite3.Database,
+    })
+}
+
+// initiate the database
+async function init() {
+    const db = await openDb()
+    await db.migrate({ force: "last", migrationsPath: "../migrations" })
+    // force: "last" will force the database to migrate to the latest version
+    // migrationsPath: "../migrations" will migrate the database to the latest version
+
+    const Person = await db.all("SELECT * FROM Person")
+    console.log(JSON.stringify(Person, null, 2))
+
+    const SearchHistory = await db.all("SELECT * FROM SearchHistory")
+    console.log(JSON.stringify(SearchHistory, null, 2))
+
+    const Favorite = await db.all("SELECT * FROM Favorite")
+    console.log(JSON.stringify(Favorite, null, 2))
+}
+
+// call the function
+init()
+
+```
+
+***Figure 14:*** JS code runs the SQLite commands in ***figure 13***.
+
+I created ```database-initiate.js``` and ```001-initial.sql``` specifically for development purposes to test the database. In the production build, I would change the ```DROP TABLE``` command to something along the lines of ```ALTER TABLE``` to migrate the data rather than deleting them. This is because other developers or I may wish to migrate the database with all the data due to version updates or changes to existing tables in the future.
+
+
+### Login
+
+**How would the website know if the user is logged in?**
+
+The first phase is to verify if the user exists and tell the website who they are. However, because the login information is sent via the Internet to the server, encrypting that information is vital to protect it. Therefore, I chose to use JWT (JSON Web Token) – an encrypted claim used to secure information transmission. That’s why the second phase has to authenticate the JWT to know who the user is before granting them access to certain features such as “Last search” and “Favorites”.
+
+
+**Login API**
+
+Although it’s possible in NEXT.js to run both server-side and static site generation on the same page, I chose to separate the server-side function into an API (Application Programming Interface) – a software used for communication between programs – to improve code readability and accessibility.
+
+
+``` js
+// ./pages/api/login.js
+
+// import libraries
+import { compare } from "bcrypt"        // for verifying hashed password
+import { sign } from "jsonwebtoken"     // for JWT
+import cookie from "cookie"             // for cookie
+
+// import sqlite and sqlite3
+const sqlite = require("sqlite")
+const sqlite3 = require("sqlite3")
+
+// open the database
+async function openDb() {
+    return sqlite.open({
+        filename: "../database.sqlite",
+        driver: sqlite3.Database,
+    })
+}
+
+// login API function
+export default async function login(req, res) {
+    const db = await openDb()
+
+    // check if the request method is POST
+    if (req.method === "POST") {
+        // check if the email and password are provided
+        const person = await db.get("SELECT * FROM Person WHERE email = ?", [
+            req.body.email,
+        ])
+
+        if (!person) {
+            res.status(401).json({ message: "Wrong email or password", success: false })
+            return
+        }
+
+        // verify the password
+        compare(
+            req.body.password,
+            person.password,
+            async function (err, result) {
+                if (!err && result) {
+                    // create a JWT
+                    const claims = {
+                        sub: person.id,
+                        myPersonEmail: person.email,
+                    }
+
+                    // sign the JWT, set to expire in 1 hour
+                    const jwt = sign(claims, "" + process.env.auth_secret, {
+                        expiresIn: "1h",
+                    })
+
+                    // set the cookie with the JWT in the response header
+                    res.setHeader(
+                        "Set-Cookie",
+                        cookie.serialize("auth", jwt, {
+                            httpOnly: true,
+                            secure: process.env.NODE_ENV !== "development",
+                            sameSite: "strict",
+                            maxAge: 3600,
+                            path: "/",
+                        })
+                    )
+                    res.json({ message: "Login success", success: true })
+                } else {
+                    res.json({ message: "Login failed", success: false })
+                }
+            }
+        )
+    } else {
+        res.status(405).json({ message: "We only support POST", success: false })
+    }
+}
+
+```
+
+***Figure 15:*** ```login()``` validates the user's login information by cross-checking with the database and assigning a JWT as a cookie upon success.
+
+
+In ```figure 15```, ```login()``` receives an HTTP request when the user submits their login information from the ```LoginScreen``` that includes the email and password inputted. The expected response should either log the user in or show an “incorrect email or password” error.
+
+To know whether the user inputted the correct email and password, they had to be checked with the database. When I made the Signup API, I used the bcrypt library to hash the password before storing it in the database. Therefore, I use bcrypt’s ```compare()``` to verify the two passwords. If ```compare()``` returns success, it will run a callback function that processes the user’s ID and email into a JWT using jsonwebtoken’s ```sign()```. When signing the JWT, I also included two optional parameters to increase security further:
+- Private key: stored as an environment variable outside of the program, which is impossible to access through the website.
+- Expire time of 1 hour: each login period last for 1 hour, preventing accidental situations where the user forgets to log out, resulting in their data getting stolen.
+
+```sign()``` returns a string containing the JWT, which is stored in the response header as the “auth” cookie. The benefit is that since the cookie is attached to all of the user’s HTTP requests, the website can read the cookie and recognize who the user is through the authentication API.
+
+
+**Authentication API**
+
+Personalized functions “Last search” and “Favorites” are wrapped in an API that authenticates the cookie inside the user’s HTTP request.
+
+
+``` js
+// ./pages/api/authenticate.js
+
+import { verify } from "jsonwebtoken"
+
+export const authenticated = (fn) => async (req, res) => {
+    // verify auth token
+    verify(
+        req.cookies.auth,
+        "" + process.env.auth_secret,
+        async function (err, decoded) {
+            // If authenticated, return the function
+            if (!err && decoded) {
+                return await fn(req, res)
+            }
+
+            // If not authenticated, return 401
+            res.status(401).json({ message: "Sorry you are not authenticated", success: false })
+        }
+    )
+}
+
+```
+
+***Figure 16:*** ```authenticated()``` verifies the user request's cookie.
+
+
+In ***figure 16***, ```authenticated()``` takes ```fn(req, res)``` as a parameter –  “Last search” or “Favorites” function – then uses jsonwebtoken’s ```verify()``` to decode the cookie. If the cookie isn’t there or is invalid, the program prevents ```fn()``` from running. Other than that, ```fn()``` runs.
+
+However, a problem arises when the website tries to fetch from the database but is blocked by ```authenticated()``` throwing the 401 error – missing or invalid JWT. This is problematic because the page will be blank and an error popup appears. My first instinct was to add a callback function to route the user to the ```LoginScreen``` if there is an error. However, ```authenticated()``` and the whole fetching process runs on the server-side, meaning it cannot directly route the user to the intended page but can only return a fail-to-authenticate message. So the only solution is to prevent the user from accessing the page in the first place, which led me to my second fix.
+
+
+``` js
+// ./pages/index.js
+
+export default function Home({ cookie }) {
+    
+    ...
+
+    async function handleFavorite() {
+        const url = `/api/person/${cookie}/getFavoriteById`
+
+        const allFavorite = await fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+            },
+        }).then((res) => res.json())
+
+        if(allFavorite.success === false) {
+            Router.push({
+                pathname: "../login",
+            })
+        } else {
+            Router.push({
+                pathname: "../favorites",
+            })
+        }
+    }
+    
+    ...
+    
+```
+
+***Figure 17:*** ```handleFavorite()``` runs when the user press "Favorites" button from the ```HomeScreen```.
 
 
 
+
+
+
+
+
+## Appendix
+
+### Client's statement
+
+![Screen Shot 2022-12-08 at 17 47 04](https://user-images.githubusercontent.com/89367058/206400928-bd95beb1-60df-4fc0-91ce-ffdff2f50dfa.png)
+
+# Charity Finder
+
+With the Charity Finder app you'll not only get to refine your Web Developer skills, but you will also have an opportunity to see how you can do good. The objective of this app is to utilize the [Global Giving](https://www.globalgiving.org/) organizations API to provide your users with a list of global charities they can search to find a charity that matches their philanthropic interests.
+
+### Constraints
+
+- Since the app is asking the user to choose and contribute to a charitable
+  cause it's important that the presentation of information be clear and concise.
+  Just as important is the need for the UI/UX to be polished and engaging to use.
+
+## User Stories
+
+- [ ] User can see a page heading containing the application name.
+- [ ] User can see an overview of what the app is intended for in 'splash'
+      page format.
+- [ ] User can see a search area containing an set of drop down boxes that
+      allow the user to specify search criteria for charitable organizations
+      including:
+
+      - Organization name
+      - Organizations home country
+      - Countries the organization serves
+- [ ] User can see a 'Search' button
+- [ ] User can click on the 'Search' button to display information cards
+      for the matching organizations in a search results area.
+- [ ] User can see organization information cards in the search results area
+      containing:
+
+      - ID
+      - Name
+      - Address
+      - Logo
+- [ ] User can click the logo in the organizations information card to open a
+      new window to that organizations home page.
+- [ ] User can see a page footer with links to your social media
+      accounts including social media icons (like the Twitter icon).
+
+## Bonus features
+
+- [ ] User can see a search dropdown for themes the charity focuses on.
+- [ ] User can select multiple options in the search dropdowns.
+- [ ] User can see a project link (e.g. 'PROJECT') on the organization
+      information card.
+- [ ] User can click on the project link to display a page with information
+      describing the Global Giving project the organization is associated with.
+      Hint: examine the structure of the JSON returned from the API to understand
+      the relationship between projects and organizations.
+
+## Useful links and resources
+
+- [Global Giving API](https://www.globalgiving.org/api/)
+- Sample XML for a project returned through the API:
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<projects numberFound="26842">
+    <hasNext>true</hasNext>
+    <nextProjectId>367</nextProjectId>
+    <project>
+        <active>false</active>
+        <activities>To fund the training of health professionals including nurses, psychologists, and social workers, and buy medicine and equipment.</activities>
+        <additionalDocumentation>https://www.globalgiving.org/pfil/359/projdoc.doc</additionalDocumentation>
+        <approvedDate>2004-06-01T12:43:27-04:00</approvedDate>
+        <contactAddress>28 Pine Street</contactAddress>
+        <contactCity>Mechanic Falls</contactCity>
+        <contactCountry>United States</contactCountry>
+        <contactPostal>04256</contactPostal>
+        <contactState>Maine</contactState>
+        <contactUrl>http://groups.yahoo.com/group/FOCUSonCambodia</contactUrl>
+        <country>Cambodia</country>
+        <funding>8239.33</funding>
+        <goal>55000.00</goal>
+        <id>359</id>
+        <image id="0">
+            <imagelink size="small">
+                <url>https://www.globalgiving.org/pfil/359/pict_grid1.jpg</url>
+            </imagelink>
+            <imagelink size="thumbnail">
+                <url>https://www.globalgiving.org/pfil/359/pict_thumbnail.jpg</url>
+            </imagelink>
+            <imagelink size="medium">
+                <url>https://www.globalgiving.org/pfil/359/pict_med.jpg</url>
+            </imagelink>
+            <imagelink size="large">
+                <url>https://www.globalgiving.org/pfil/359/pict_grid7.jpg</url>
+            </imagelink>
+            <imagelink size="extraLarge">
+                <url>https://www.globalgiving.org/pfil/359/pict_large.jpg</url>
+            </imagelink>
+            <imagelink size="original">
+                <url>https://www.globalgiving.org/pfil/359/pict_original.jpg</url>
+            </imagelink>
+            <title>Improving the Health of Children in Cambodia</title>
+        </image>
+        <imageGallerySize>1</imageGallerySize>
+        <imageLink>https://www.globalgiving.org/pfil/359/pict.jpg</imageLink>
+        <iso3166CountryCode>KH</iso3166CountryCode>
+        <longTermImpact>This project will help improve the mental and physical health of orphaned children in Cambodia.  This project will also ensure the sustainability of the Nutrition Center in Child Mental Health Center.</longTermImpact>
+        <need>Our beneficiaries will be orphaned children suffering from AIDS/HIV and other diseases and children with mental health problems whose parents do not know how to cope because they were deprived of family experiences by the forced separations of the Pol Pot regime. At the Nutrition Center in Phnom Penh, we will help urban orphans from brothels and hospitals that have abandoned them. At the Child Mental Health Center, we will help families, largely the working poor, from all over Cambodia.</need>
+        <numberOfDonations>102</numberOfDonations>
+        <organization>
+            <activeProjects>0</activeProjects>
+            <addressLine1>1062 Lewiston Road</addressLine1>
+            <addressLine2></addressLine2>
+            <bridgeId>5824171103</bridgeId>
+            <city>New Gloucester</city>
+            <countries>
+                <country>
+                    <iso3166CountryCode>KH</iso3166CountryCode>
+                    <name>Cambodia</name>
+                </country>
+            </countries>
+            <country>United States</country>
+            <id>10</id>
+            <iso3166CountryCode>US</iso3166CountryCode>
+            <mission>The mission of FOCUS is to pursue humanitarian programs that include medical aid, school construction and supplies, distribution of rice and rice seeds, road improvements, agricultural improvements, fish farms, basic housing, hospital restoration, school scholarships, and loans for infrastructure improvements. We want to help disadvantaged youth and their families, if they have any, in a country where the infrastructure is still weak due to Khmer Rouge depredations.</mission>
+            <name>Friends of Cambodia in the U.S.  (FOCUS)</name>
+            <postal>4260</postal>
+            <state>Maine</state>
+            <themes>
+                <theme>
+                    <id>health</id>
+                    <name>Health</name>
+                </theme>
+            </themes>
+            <totalProjects>2</totalProjects>
+            <url></url>
+        </organization>
+        <progressReportLink>https://www.globalgiving.org/projects/educating-children-of-cambodia/updates/</progressReportLink>
+        <projectLink>https://www.globalgiving.org/projects/educating-children-of-cambodia/</projectLink>
+        <region>Asia and Oceania</region>
+        <remaining>46760.67</remaining>
+        <status>funded</status>
+        <summary>To help abandoned children, many afflicted with HIV/AIDS, and children with mental health problems. We want to address lack of food, medicine and staff training.</summary>
+        <themeName>Health</themeName>
+        <title>Improving the Health of Children in Cambodia</title>
+        <type>project</type>
+    </project>
+</projects>
+```
 
 
 
