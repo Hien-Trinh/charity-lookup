@@ -60,6 +60,7 @@ Next.js defaults to Vercel hosting service, which handles the distribution of se
 4. The organization’s information card hyperlink opens a new tab on that organization’s home page.
 5. Function allowing users to continue their latest previous search.
 6. Function allowing users to save search results and access them from the main page.
+7. Users can save their "Favorites" collection to PDF
 
 
 ## Criteria B: Design
@@ -412,6 +413,13 @@ I created ```database-initiate.js``` and ```001-initial.sql``` specifically for 
 
 ### Login
 
+**How would the website know if the user is logged in?**
+
+The first phase is to verify if the user exists and tell the website who they are. However, because the login information is sent via the Internet to the server, encrypting that information is vital to protect it. Therefore, I chose to use JWT (JSON Web Token) – an encrypted claim used to secure information transmission. That’s why the second phase has to authenticate the JWT to know who the user is before granting them access to certain features such as “Last search” and “Favorites”.
+
+
+**Login API**
+
 Although it’s possible in NEXT.js to run both server-side and static site generation on the same page, I chose to separate the server-side function into an API (Application Programming Interface) – a software used for communication between programs – to improve code readability and accessibility.
 
 
@@ -493,6 +501,89 @@ export default async function login(req, res) {
 ```
 
 ***Figure 15:*** ```login()``` validates the user's login information by cross-checking with the database and assigning a JWT as a cookie upon success.
+
+
+In ```figure 15```, ```login()``` receives an HTTP request when the user submits their login information from the ```LoginScreen``` that includes the email and password inputted. The expected response should either log the user in or show an “incorrect email or password” error.
+
+To know whether the user inputted the correct email and password, they had to be checked with the database. When I made the Signup API, I used the bcrypt library to hash the password before storing it in the database. Therefore, I use bcrypt’s ```compare()``` to verify the two passwords. If ```compare()``` returns success, it will run a callback function that processes the user’s ID and email into a JWT using jsonwebtoken’s ```sign()```. When signing the JWT, I also included two optional parameters to increase security further:
+- Private key: stored as an environment variable outside of the program, which is impossible to access through the website.
+- Expire time of 1 hour: each login period last for 1 hour, preventing accidental situations where the user forgets to log out, resulting in their data getting stolen.
+
+```sign()``` returns a string containing the JWT, which is stored in the response header as the “auth” cookie. The benefit is that since the cookie is attached to all of the user’s HTTP requests, the website can read the cookie and recognize who the user is through the authentication API.
+
+
+**Authentication API**
+
+Personalized functions “Last search” and “Favorites” are wrapped in an API that authenticates the cookie inside the user’s HTTP request.
+
+
+``` js
+// ./pages/api/authenticate.js
+
+import { verify } from "jsonwebtoken"
+
+export const authenticated = (fn) => async (req, res) => {
+    // verify auth token
+    verify(
+        req.cookies.auth,
+        "" + process.env.auth_secret,
+        async function (err, decoded) {
+            // If authenticated, return the function
+            if (!err && decoded) {
+                return await fn(req, res)
+            }
+
+            // If not authenticated, return 401
+            res.status(401).json({ message: "Sorry you are not authenticated", success: false })
+        }
+    )
+}
+
+```
+
+***Figure 16:*** ```authenticated()``` verifies the user request's cookie.
+
+
+In ***figure 16***, ```authenticated()``` takes ```fn(req, res)``` as a parameter –  “Last search” or “Favorites” function – then uses jsonwebtoken’s ```verify()``` to decode the cookie. If the cookie isn’t there or is invalid, the program prevents ```fn()``` from running. Other than that, ```fn()``` runs.
+
+However, a problem arises when the website tries to fetch from the database but is blocked by ```authenticated()``` throwing the 401 error – missing or invalid JWT. This is problematic because the page will be blank and an error popup appears. My first instinct was to add a callback function to route the user to the ```LoginScreen``` if there is an error. However, ```authenticated()``` and the whole fetching process runs on the server-side, meaning it cannot directly route the user to the intended page but can only return a fail-to-authenticate message. So the only solution is to prevent the user from accessing the page in the first place, which led me to my second fix.
+
+
+``` js
+// ./pages/index.js
+
+export default function Home({ cookie }) {
+    
+    ...
+
+    async function handleFavorite() {
+        const url = `/api/person/${cookie}/getFavoriteById`
+
+        const allFavorite = await fetch(url, {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+            },
+        }).then((res) => res.json())
+
+        if(allFavorite.success === false) {
+            Router.push({
+                pathname: "../login",
+            })
+        } else {
+            Router.push({
+                pathname: "../favorites",
+            })
+        }
+    }
+    
+    ...
+    
+```
+
+***Figure 17:*** ```handleFavorite()``` runs when the user press "Favorites" button from the ```HomeScreen```.
+
+
 
 
 
