@@ -546,16 +546,16 @@ export const authenticated = (fn) => async (req, res) => {
 
 In ***figure 16***, ```authenticated()``` takes ```fn(req, res)``` as a parameter –  “Last search” or “Favorites” function – then uses jsonwebtoken’s ```verify()``` to decode the cookie. If the cookie isn’t there or is invalid, the program prevents ```fn()``` from running. Other than that, ```fn()``` runs.
 
-However, a problem arises when the website tries to fetch from the database but is blocked by ```authenticated()``` throwing the 401 error – missing or invalid JWT. This is problematic because the page will be blank and an error popup appears. My first instinct was to add a callback function to route the user to the ```LoginScreen``` if there is an error. However, ```authenticated()``` and the whole fetching process runs on the server-side, meaning it cannot directly route the user to the intended page but can only return a fail-to-authenticate message. So the only solution is to prevent the user from accessing the page in the first place, which led me to my second fix.
+However, a problem arises when the website tries to fetch from the database but is blocked by ```authenticated()``` throwing the 401 error – missing or invalid JWT. This is problematic because the page will be blank, and an error popup will appear. My first instinct was to prevent the user from accessing the page from the “Favorites” button in ```HomeScreen``` and instead redirect them to ```LoginScreen```.
 
 
 ``` js
 // ./pages/index.js
 
 export default function Home({ cookie }) {
-    
-    ...
 
+    ...
+    
     async function handleFavorite() {
         const url = `/api/person/${cookie}/getFavoriteById`
 
@@ -581,13 +581,83 @@ export default function Home({ cookie }) {
     
 ```
 
-***Figure 17:*** ```handleFavorite()``` runs when the user press "Favorites" button from the ```HomeScreen```.
+***Figure 17:*** ```handleFavorite()``` runs when the user presses "Favorites" button.
 
 
+```handleFavorite()``` figure 17 uses the ```getFavoriteById``` API to fetch the user’s saved projects. Because the API is wrapped in ```authenticated()```, if an error occurs, ```allFavorite = { message: "Sorry you are not authenticated", success: false }```, which I can put in an if-statement to handle the unauthorized user. However, the user will see an error if they directly access the ```FavoritesScreen```.
+
+Therefore for the second attempt, I included a guard clause in ```getServerSideProps()``` – function fetches data before the page is rendered –  to route the user to the ```LoginScreen``` if there is an error.
 
 
+``` js
+// ./pages/favorites.js
+
+export async function getServerSideProps(ctx) {
+    const auth = await isLoggedIn(ctx)
+    const url = `http://localhost:3000/api/person/${auth}/getFavoriteById`
+    const allFavorite = await myGet(url, ctx)
+
+    if (allFavorite.success === false) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        }
+    }
+
+    return {
+        props: {
+            allFavorite,
+        },
+    }
+}
+
+```
+
+***Figure 18:*** ```getServerSideProps()``` fetches the data to populate the page's HTML.
 
 
+In ***figure 18***, the ```redirect``` object is passed when authentication is unsuccessful, which redirects the user to the ```LoginScreen```. This solution is better than the previous one because it accounts for the user going to ```FavoritesScreen``` directly.
+
+
+### UI Screenshots
+
+![Screen Shot 2022-12-09 at 18 42 30](https://user-images.githubusercontent.com/89367058/206672953-dd8413b3-e877-4364-950b-f21d5539ac02.png)
+
+***Figure 19:*** Screenshot of the Home screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 42 37](https://user-images.githubusercontent.com/89367058/206672964-1cf12272-b3d8-410b-8e9a-23c293527e78.png)
+
+***Figure 20:*** Screenshot of the Login screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 42 42](https://user-images.githubusercontent.com/89367058/206672968-33899635-4101-4e07-877f-f3548b81770c.png)
+
+***Figure 21:*** Screenshot of the Signup screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 43 12](https://user-images.githubusercontent.com/89367058/206672973-22e438f8-dca2-4960-a8f9-e573a212ff8b.png)
+
+***Figure 22:*** Screenshot of the Search screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 43 30](https://user-images.githubusercontent.com/89367058/206672975-93ac33d9-e640-4950-900e-f584d35e2f31.png)
+
+***Figure 23:*** Screenshot of the Favorites screen.
+
+### <br/>
+
+## Criteria D: Functionality
+
+### Video
+
+https://user-images.githubusercontent.com/89367058/206672423-497178a0-e605-44dd-b6fe-529e0e0b743d.mp4
 
 
 ## Appendix
