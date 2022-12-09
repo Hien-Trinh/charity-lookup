@@ -26,6 +26,14 @@ export default function Home({ cookie }) {
             },
         }).then((res) => res.json())
 
+        if (allSearchHistory.success === false) {
+            Router.push({
+                pathname: "../login",
+            })
+        } else if (allSearchHistory.length === 0) {
+            return
+        }
+
         const lastSearch = allSearchHistory[allSearchHistory.length - 1]
         console.log(allSearchHistory)
 
