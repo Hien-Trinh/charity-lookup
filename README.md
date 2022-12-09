@@ -189,6 +189,22 @@ The web application uses Javascript with frameworks such as React and Next.js as
 
 ### Test plan
 
+| Testing level    | Type of Testing                     | Success Criteria                                                                                                                                                                            | Procedure                                                                                                                                                                                                                                                                                                                                           | Success |
+|------------------|-------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| Unit testing     | Login system test                   | User is able to log in after typing the correct email and password                                                                                                                          | In the Login screen, type "david@test" into the ***email input***, "david" into the ***password input***, and press the ***Login*** button.                                                                                                                                                                                                         | Yes     |
+| Unit testing     | Login system test                   | User is unable to log in if either or both inputs are empty, or after typing the incorrect email or password. Instead, a message will appear, indicating the error.                         | In the Login screen, leave the text fields blank and press ***Login*** button. Then, type an incorrect email into the ***email input***, anything into the ***password input***, and press the ***Login*** button. Then, type "david@test" into the ***email input***, anything (but "david") into the ***password input***, and press ***Login***. | Yes     |
+| Unit testing     | Register system test                | User is able to register a new account with a new email address                                                                                                                             | In the Register screen, type anything into the ***name input***, "newuser@test" into the ***email input***, "password" into the ***password input***, and press the ***Register*** button.                                                                                                                                                          | Yes     |
+| Unit testing     | Register system test                | User is unable to register a new account if any or all inputs are empty, or have the same email address as an existing account. Instead, a message will appear, indicating the error.       | In the Register screen, leave the text fields blank and press ***Login*** button. Then, type anything into the ***username input***, "david@test" into the ***email input***, "password" into the ***password input***, and press the ***Register*** button.                                                                                        | Yes     |
+| Unit testing     | Search function test                | When a search key is provided in the search bar and ran, the website redirects to results page with a list of projects related to the key. If no result is found, show "no results" message | In any screen with a search bar, type anything into the ***search bar*** and press the Enter key or ***Search*** button.                                                                                                                                                                                                                            | Yes     |
+| Unit testing     | Search function test                | When no search key is provided in the search bar and ran, the user is redirected to Home screen. If already in Home scree, does nothing.                                                    | In any screen with a search bar, type nothing into the ***search bar*** and press the Enter key or ***Search*** button.                                                                                                                                                                                                                             | Yes     |
+| Unit testing     | Last Search function test           | When the user is logged in and the ***Last Search*** button is pressed, the website redirects to results page based on the last search key.                                                 | In the Home screen, make sure user is logged in and press ***Last Search***.                                                                                                                                                                                                                                                                        | Yes     |
+| Unit testing     | Last Search function test           | When the user is not logged in and the ***Last Search*** button is pressed, the website redirects to Login screen.                                                                          | In the Home screen, make sure no one is logged in and press ***Last Search***.                                                                                                                                                                                                                                                                      | Yes     |
+| Unit testing     | Favorites function test             | When the user is logged in and the ***Favorites*** button is pressed, the website redirects to Favorites screen with the user's saved charity projects.                                     | In the Home screen, make sure user is logged in and press ***Favorites***.                                                                                                                                                                                                                                                                          | Yes     |
+| Unit testing     | Favorites function test             | When the user is not logged in and the ***Favorites*** button is pressed, the website redirects to Login screen.                                                                            | In the Home screen, make sure no one is logged in and press ***Favorites***.                                                                                                                                                                                                                                                                        | Yes     |
+| Integration test | The app GUI functions               | The transition between pages is correct and there are no unaccounted for visual bugs.                                                                                                       | Check all the pages, transition and visual content                                                                                                                                                                                                                                                                                                  | Yes     |
+| Code review      | Error/bugs and code efficiency test | No errors/exit messages/syntax/bugs                                                                                                                                                         | If all the Unit test worked, the criteria is met                                                                                                                                                                                                                                                                                                    | Yes     |
+| Software review  | All system test                     | The program runs flawlessly throughout                                                                                                                                                      | If all the Unit test worked and the success criteria in Planning are met, the criteria is met                                                                                                                                                                                                                                                       | Yes     |
+
 
 ## Criteria C: Development
 
@@ -546,16 +562,16 @@ export const authenticated = (fn) => async (req, res) => {
 
 In ***figure 16***, ```authenticated()``` takes ```fn(req, res)``` as a parameter –  “Last search” or “Favorites” function – then uses jsonwebtoken’s ```verify()``` to decode the cookie. If the cookie isn’t there or is invalid, the program prevents ```fn()``` from running. Other than that, ```fn()``` runs.
 
-However, a problem arises when the website tries to fetch from the database but is blocked by ```authenticated()``` throwing the 401 error – missing or invalid JWT. This is problematic because the page will be blank and an error popup appears. My first instinct was to add a callback function to route the user to the ```LoginScreen``` if there is an error. However, ```authenticated()``` and the whole fetching process runs on the server-side, meaning it cannot directly route the user to the intended page but can only return a fail-to-authenticate message. So the only solution is to prevent the user from accessing the page in the first place, which led me to my second fix.
+However, a problem arises when the website tries to fetch from the database but is blocked by ```authenticated()``` throwing the 401 error – missing or invalid JWT. This is problematic because the page will be blank, and an error popup will appear. My first instinct was to prevent the user from accessing the page from the “Favorites” button in ```HomeScreen``` and instead redirect them to ```LoginScreen```.
 
 
 ``` js
 // ./pages/index.js
 
 export default function Home({ cookie }) {
-    
-    ...
 
+    ...
+    
     async function handleFavorite() {
         const url = `/api/person/${cookie}/getFavoriteById`
 
@@ -581,13 +597,83 @@ export default function Home({ cookie }) {
     
 ```
 
-***Figure 17:*** ```handleFavorite()``` runs when the user press "Favorites" button from the ```HomeScreen```.
+***Figure 17:*** ```handleFavorite()``` runs when the user presses "Favorites" button.
 
 
+```handleFavorite()``` figure 17 uses the ```getFavoriteById``` API to fetch the user’s saved projects. Because the API is wrapped in ```authenticated()```, if an error occurs, ```allFavorite = { message: "Sorry you are not authenticated", success: false }```, which I can put in an if-statement to handle the unauthorized user. However, the user will see an error if they directly access the ```FavoritesScreen```.
+
+Therefore for the second attempt, I included a guard clause in ```getServerSideProps()``` – function fetches data before the page is rendered –  to route the user to the ```LoginScreen``` if there is an error.
 
 
+``` js
+// ./pages/favorites.js
+
+export async function getServerSideProps(ctx) {
+    const auth = await isLoggedIn(ctx)
+    const url = `http://localhost:3000/api/person/${auth}/getFavoriteById`
+    const allFavorite = await myGet(url, ctx)
+
+    if (allFavorite.success === false) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        }
+    }
+
+    return {
+        props: {
+            allFavorite,
+        },
+    }
+}
+
+```
+
+***Figure 18:*** ```getServerSideProps()``` fetches the data to populate the page's HTML.
 
 
+In ***figure 18***, the ```redirect``` object is passed when authentication is unsuccessful, which redirects the user to the ```LoginScreen```. This solution is better than the previous one because it accounts for the user going to ```FavoritesScreen``` directly.
+
+
+### UI Screenshots
+
+![Screen Shot 2022-12-09 at 18 42 30](https://user-images.githubusercontent.com/89367058/206672953-dd8413b3-e877-4364-950b-f21d5539ac02.png)
+
+***Figure 19:*** Screenshot of the Home screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 42 37](https://user-images.githubusercontent.com/89367058/206672964-1cf12272-b3d8-410b-8e9a-23c293527e78.png)
+
+***Figure 20:*** Screenshot of the Login screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 42 42](https://user-images.githubusercontent.com/89367058/206672968-33899635-4101-4e07-877f-f3548b81770c.png)
+
+***Figure 21:*** Screenshot of the Signup screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 43 12](https://user-images.githubusercontent.com/89367058/206672973-22e438f8-dca2-4960-a8f9-e573a212ff8b.png)
+
+***Figure 22:*** Screenshot of the Search screen.
+
+### <br/>
+
+![Screen Shot 2022-12-09 at 18 43 30](https://user-images.githubusercontent.com/89367058/206672975-93ac33d9-e640-4950-900e-f584d35e2f31.png)
+
+***Figure 23:*** Screenshot of the Favorites screen.
+
+### <br/>
+
+## Criteria D: Functionality
+
+### Video
+
+https://user-images.githubusercontent.com/89367058/206672423-497178a0-e605-44dd-b6fe-529e0e0b743d.mp4
 
 
 ## Appendix
