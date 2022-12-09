@@ -15,6 +15,15 @@ export async function getServerSideProps(ctx) {
     const url = `http://localhost:3000/api/person/${auth}/getFavoriteById`
     const allFavorite = await myGet(url, ctx)
 
+    if (allFavorite.success === false) {
+        return {
+            redirect: {
+                destination: "/login",
+                permanent: false,
+            },
+        }
+    }
+
     return {
         props: {
             allFavorite,
@@ -22,7 +31,7 @@ export async function getServerSideProps(ctx) {
     }
 }
 
-export default function search({ allFavorite }) {
+export default function favorites({ allFavorite }) {
     async function handleSave(charityId) {
         await fetch("/api/setFavorite", {
             method: "POST",

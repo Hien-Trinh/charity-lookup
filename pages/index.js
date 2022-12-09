@@ -36,24 +36,9 @@ export default function Home({ cookie }) {
     }
 
     async function handleFavorite() {
-        const url = `/api/person/${cookie}/getFavoriteById`
-
-        const allFavorite = await fetch(url, {
-            method: "GET",
-            headers: {
-                Accept: "application/json",
-            },
-        }).then((res) => res.json())
-
-        if(allFavorite.success === false) {
-            Router.push({
-                pathname: "../login",
-            })
-        } else {
-            Router.push({
-                pathname: "../favorites",
-            })
-        }
+        Router.push({
+            pathname: "../favorites",
+        })
     }
 
     return (
