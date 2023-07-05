@@ -19,6 +19,15 @@ export default async function signup(req, res) {
             return
         }
 
+        const person = await db.get("SELECT * FROM Person WHERE email = ?", [
+            req.body.email,
+        ])
+
+        if (person) {
+            res.status(401).json({ message: "Account already exist", success: false })
+            return
+        }
+
         hash(req.body.password, 12, async function (err, hash) {
             const statement = await db.prepare(
                 "INSERT INTO Person (name, email, password) VALUES (?, ?, ?)"
